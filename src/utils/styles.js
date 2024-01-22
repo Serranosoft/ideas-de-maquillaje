@@ -16,13 +16,13 @@ export const ui = {
     h2: {
         fontFamily: "Semibold",
         color: "black",
-        fontSize: 32,
+        fontSize: 30,
         textAlign: "center"
     },
     h3: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: 25,
+        fontSize: 21,
     },
     button: {
         paddingVertical: 12,

@@ -35,7 +35,7 @@ export default function List() {
                                                 <View style={styles.item}>
                                                     <Image transition={1000} style={styles.image} source={item.image} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
                                                     <View style={styles.info}>
-                                                        <Text style={[ui.h3, ui.bold, { color: "#fff" }]}>{item.name}</Text>
+                                                        <Text style={[ui.h3, ui.bold, { color: "#fff", textAlign: "center", fontWeight: "bold" }]}>{item.name}</Text>
                                                     </View>
                                                 </View>
                                             </Pressable>
@@ -92,11 +92,12 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center", 
         width: "100%",
-        height: 85,
+        height: 75,
         position: "absolute",
         bottom: 0,
         left: 0,
-        backgroundColor: "rgba(0,0,0,0.6)",
+        backgroundColor: "rgba(0,0,0,0.65)",
+        paddingHorizontal: 4
     },
 
     image: {
