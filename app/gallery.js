@@ -1,17 +1,21 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import { Link, Stack, useLocalSearchParams } from "expo-router";
 import LottieView from 'lottie-react-native';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Header from "../src/components/header";
 import { scheduleWeeklyNotification } from "../src/utils/notifications";
+import { DataContext } from "../src/DataContext";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { bannerId } from "../src/utils/constants";
 
 export default function gallery() {
 
     const params = useLocalSearchParams();
     const { name } = params;
     const [images, setImages] = useState([]);
+    const { setAdTrigger } = useContext(DataContext);
 
     useEffect(() => {
         getImages();
@@ -33,6 +37,7 @@ export default function gallery() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header title={name} /> }} />
+            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             {
                 images.length > 0 ?
                     <View style={styles.list}>
@@ -45,7 +50,9 @@ export default function gallery() {
                                 return (
                                     <View key={i} style={styles.itemWrapper}>
                                         <Link asChild href={{ pathname: "/image", params: { image: item } }}>
-                                            <Pressable style={styles.item}>
+                                            <Pressable style={styles.item} onPress={() => {
+                                                setAdTrigger((adTrigger) => adTrigger + 1);
+                                            }}>
                                                 <Image transition={1000} style={styles.image} source={item} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
                                             </Pressable>
                                         </Link>

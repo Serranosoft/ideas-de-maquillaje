@@ -1,11 +1,12 @@
 import { SplashScreen, Stack, router } from "expo-router";
 import { View, StatusBar, StyleSheet, Image, Pressable } from "react-native";
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
 import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
+import AdsHandler from "../src/components/AdsHandler";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -46,6 +47,17 @@ export default function Layout() {
         });
     }, [])
 
+    // Gestión de anuncios
+    const [adTrigger, setAdTrigger] = useState(0);
+    const adsHandlerRef = createRef();
+
+    useEffect(() => {
+        if (adTrigger > 4) {
+            adsHandlerRef.current.showIntersitialAd();
+            setAdTrigger(0);
+        }
+    }, [adTrigger])
+
     // Esperar hasta que las fuentes se carguen
     if (!fontsLoaded) {
         return null;
@@ -53,7 +65,8 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites }}>
+            <AdsHandler ref={adsHandlerRef} adType={[0]} />
+            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
                 <Stack />
                 <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
                     <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />

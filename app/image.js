@@ -6,6 +6,8 @@ import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import Image from 'react-native-image-progress';
 import * as Progress from 'react-native-progress';
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { bannerId } from "../src/utils/constants";
 
 export default function ImageWrapper() {
 
@@ -62,6 +64,7 @@ export default function ImageWrapper() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ header: () => <Header image={image} withFavorite={true} /> }} />
+            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             <Image
                 style={styles.image}
                 source={{ uri: image }}
