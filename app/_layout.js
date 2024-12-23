@@ -13,10 +13,10 @@ export default function Layout() {
 
     // Carga de fuentes.
     const [fontsLoaded] = useFonts({
-        "Regular": require("../assets/fonts/OpenRunde-Regular.otf"),
-        "Medium": require("../assets/fonts/OpenRunde-Medium.otf"),
-        "Semibold": require("../assets/fonts/OpenRunde-Semibold.otf"),
-        "Bold": require("../assets/fonts/OpenRunde-Bold.otf"),
+        "Regular": require("../assets/fonts/Reckless/Regular.ttf"),
+        "Medium": require("../assets/fonts/Reckless/Medium.ttf"),
+        "Semibold": require("../assets/fonts/Reckless/SemiBold.ttf"),
+        "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
 
     useEffect(() => {
@@ -68,9 +68,9 @@ export default function Layout() {
             <AdsHandler ref={adsHandlerRef} adType={[0]} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
                 <Stack />
-                <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
+                {/* <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
                     <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
-                </Pressable>
+                </Pressable> */}
             </DataContext.Provider>
             <StatusBar style="light" />
         </View>
@@ -81,12 +81,8 @@ const styles = StyleSheet.create({
         flex: 1,
         position: "relative",
         justifyContent: "center",
-        marginTop: StatusBar.currentHeight,
-    },
-    wrapper: {
-        flex: 1,
-        width: "100%",
-        alignSelf: "center",
-        justifyContent: "center",
+        paddingTop: StatusBar.currentHeight,
+        paddingHorizontal: 16,
+        backgroundColor: "#fff"
     }
 })

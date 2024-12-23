@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Link, Stack } from "expo-router";
 import { ui } from "../src/utils/styles";
 import LottieView from 'lottie-react-native';
@@ -8,6 +8,13 @@ import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Animated from "react-native-reanimated";
 import { DataContext } from "../src/DataContext";
+import Title from "../src/layout/home/title";
+import Header from "../src/components/header";
+import Hero from "../src/layout/home/hero";
+import Columns from "../src/layout/home/columns";
+import Button from "../src/components/button";
+import HeartIcon from "../src/icons/heart";
+import Feedback from "../src/layout/home/feedback";
 
 export default function List() {
 
@@ -16,9 +23,35 @@ export default function List() {
     const { setAdTrigger } = useContext(DataContext);
 
     return (
-        <View style={styles.container} sharedTransitionTag="first">
+        <ScrollView 
+            style={styles.container}
+            contentContainerStyle={styles.scrollContent}
+        >
             <Stack.Screen options={{ headerShown: false }} />
-            <View style={styles.title}>
+            <Header />
+            <Title />
+            <Hero />
+            <Columns />
+            <Button border>
+                <HeartIcon
+                    ball
+                    width={24}
+                    height={24}
+                />
+                <Text style={ui.h3}>Ver mis favoritos</Text>
+            </Button>
+            <Feedback />
+
+
+
+
+
+
+
+
+
+
+            {/* <View style={styles.title}>
                 <Text style={ui.h2}>Ideas de maquillaje para todas las temporadas</Text>
             </View>
             {
@@ -49,18 +82,20 @@ export default function List() {
                     </View>
                     :
                     <LottieView source={require("../assets/lottie/loading-animation.json")} loop={true} autoPlay={true} />
-            }
-        </View>
+            } */}
+        </ScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap: 24,
-        alignItems: "center",
-        paddingTop: 48,
         backgroundColor: "#fff",
+    },
+    scrollContent: {
+        gap: 16,
+        paddingTop: 24,
+        paddingBottom: 60
     },
 
     title: {

@@ -9,20 +9,30 @@ export const ui = {
         fontSize: 16.5,
     },
     h1: {
-        fontSize: 60,
+        fontSize: 36,
         fontFamily: "Semibold",
-        lineHeight: 65,
+        lineHeight: 35,
     },
     h2: {
         fontFamily: "Semibold",
         color: "black",
         fontSize: 30,
-        textAlign: "center"
+        lineHeight: 33
     },
     h3: {
-        fontFamily: "Regular",
+        fontFamily: "Semibold",
         color: "black",
         fontSize: 21,
+        lineHeight: 22,
+    },
+    h4: {
+        fontFamily: "Semibold",
+        color: "black",
+        fontSize: 17,
+        lineHeight: 18,
+    },
+    center: {
+        textAlign: "center",
     },
     button: {
         paddingVertical: 12,
