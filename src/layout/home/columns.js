@@ -1,49 +1,36 @@
 import { FlatList, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
+import { categories } from "../../utils/data";
+import { Link } from "expo-router";
 
-const Data = [
-    {
-        name: "Tutoriales",
-        image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949211/maquillaje/ykgfsofvrhjeh89hufxs.jpg",
-    },
-    {
-        name: "Consejos",
-        image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/uijeqaepqmt2y6nkeim4.jpg",
-    },
-    {
-        name: "Cuidados",
-        image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/yzzhsl9vagwivoeslow2.jpg",
-    },
-    {
-        name: "Inspiración",
-        image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949300/maquillaje/dyiedovrkq8ikwzmdtsy.jpg",
-    }
 
-]
 export default function Columns() {
+
 
     return (
         <FlatList
             numColumns={2}
-            data={Data}
+            data={categories.slice(1)}
             style={styles.flatlist}
             contentContainerStyle={styles.columns}
             columnWrapperStyle={styles.columns}
             renderItem={({ item }) => {
                 return (
-                    <TouchableOpacity style={{ flex: 1 }}>
-                        <ImageBackground
-                            source={{ uri: item.image }}
-                            style={styles.container}
-                            imageStyle={{ borderRadius: 8 }}
-                        >
-                            <View style={styles.wrapper}>
-                                <Text style={ui.h4}>{item.name}</Text>
-                                <ArrowRightIcon width={24} height={24} black />
-                            </View>
-                        </ImageBackground>
-                    </TouchableOpacity>
+                    <Link asChild href={{ pathname: "/gallery", params: { name: item.name } }}>
+                        <TouchableOpacity style={{ flex: 1 }}>
+                            <ImageBackground
+                                source={{ uri: item.image }}
+                                style={styles.container}
+                                imageStyle={{ borderRadius: 8 }}
+                            >
+                                <View style={styles.wrapper}>
+                                    <Text style={ui.h4}>{item.name}</Text>
+                                    <ArrowRightIcon width={24} height={24} black />
+                                </View>
+                            </ImageBackground>
+                        </TouchableOpacity>
+                    </Link>
                 )
             }}
         >

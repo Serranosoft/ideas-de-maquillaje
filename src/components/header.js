@@ -4,8 +4,9 @@ import Favorite from "./favorite";
 import { ui } from "../utils/styles";
 import MenuIcon from "../icons/menu";
 import HappyFaceIcon from "../icons/happy-face";
+import ArrowLeftIcon from "../icons/arrow-left";
 
-export default function Header({ image, title  }) {
+export default function Header({ image, title, back, home  }) {
 
     const router = useRouter();
 
@@ -20,22 +21,24 @@ export default function Header({ image, title  }) {
     return (
         <>
             <View style={styles.header}>
-                <TouchableOpacity style={styles.item} onPress={() => router.navigate("/settings")}>
-                    <MenuIcon  />
-                </TouchableOpacity>
-
-                <View style={[styles.item, { backgroundColor: "#fff" }]}>
-                    <HappyFaceIcon width={40} height={40} />
-                    <Text style={ui.h3}>{phrases[4/* Math.floor(Math.random() * phrases.length) */]}</Text>
-                </View>
+                {
+                    back ?
+                        <TouchableOpacity style={styles.item} onPress={() => router.back()}>
+                            <ArrowLeftIcon  />
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity style={styles.item} onPress={() => router.navigate("/settings")}>
+                            <MenuIcon  />
+                        </TouchableOpacity>
+                }
+                {
+                    home && 
+                        <View style={[styles.item, { backgroundColor: "#fff" }]}>
+                            <HappyFaceIcon width={40} height={40} />
+                            <Text style={ui.h3}>{phrases[Math.floor(Math.random() * phrases.length)]}</Text>
+                        </View>
+                }
             </View>
-            {/* <View style={styles.header}>
-                <Pressable onPress={() => router.back()}>
-                    <Image style={styles.img} source={require("../../assets/back.png")} />
-                </Pressable>
-                { title && <Text style={[ui.text, {color: "#fff"}]}>{title}</Text> }
-                { image && <Favorite image={image} /> }
-            </View> */}
         </>
     )
 }

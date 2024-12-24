@@ -1,13 +1,6 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link, Stack } from "expo-router";
+import { ScrollView, StyleSheet, Text } from "react-native";
+import { Stack } from "expo-router";
 import { ui } from "../src/utils/styles";
-import LottieView from 'lottie-react-native';
-import { useContext, useMemo, useState } from "react";
-import { categories_raw } from "../src/utils/data";
-import { Pressable } from "react-native";
-import { Image } from "expo-image";
-import Animated from "react-native-reanimated";
-import { DataContext } from "../src/DataContext";
 import Title from "../src/layout/home/title";
 import Header from "../src/components/header";
 import Hero from "../src/layout/home/hero";
@@ -18,17 +11,13 @@ import Feedback from "../src/layout/home/feedback";
 
 export default function List() {
 
-    const [categories, setCategories] = useState([])
-    useMemo(() => setCategories(categories_raw), [categories]);
-    const { setAdTrigger } = useContext(DataContext);
-
     return (
         <ScrollView 
             style={styles.container}
             contentContainerStyle={styles.scrollContent}
         >
             <Stack.Screen options={{ headerShown: false }} />
-            <Header />
+            <Header home />
             <Title />
             <Hero />
             <Columns />

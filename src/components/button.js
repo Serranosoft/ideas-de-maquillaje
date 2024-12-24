@@ -11,7 +11,7 @@ export default function Button({ evt, children, border }) {
             <View style={styles.row}>
                 {children}
             </View>
-                <ArrowRightIcon width={32} height={32} />
+            <ArrowRightIcon width={32} height={32} />
         </TouchableOpacity>
     )
 }
