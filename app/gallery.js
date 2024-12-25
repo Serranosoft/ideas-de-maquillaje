@@ -13,7 +13,7 @@ import { bannerId } from "../src/utils/constants";
 export default function gallery() {
 
     const params = useLocalSearchParams();
-    const { name } = params;
+    const { tag } = params;
     const [images, setImages] = useState([]);
     const { setAdTrigger } = useContext(DataContext);
 
@@ -23,7 +23,7 @@ export default function gallery() {
     }, [])
 
     async function getImages() {
-        const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${name.toLowerCase().split(' ').join("-")}.json`)
+        const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${tag}.json`)
         .then((response) => response.json())
         .then(data => data);
 
@@ -36,7 +36,9 @@ export default function gallery() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={name} /> }} />
+            <Stack.Screen options={{ headerShown: false }} />
+            <Header back />
+            
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             {
                 images.length > 0 ?
@@ -72,8 +74,9 @@ export default function gallery() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap: 24,
-        alignItems: "center",
+        backgroundColor: "#fff",
+        paddingTop: 24,
+        paddingBottom: 60
     },
 
     title: {

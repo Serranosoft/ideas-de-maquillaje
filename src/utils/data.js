@@ -40,16 +40,20 @@ export const categories = [
         image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/uijeqaepqmt2y6nkeim4.jpg",
         subcategories: [
             {
-                name: "Combinación de colores",
+                name: "Combinacion de colores",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
             },
             {
                 name: "Cuidados",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
             },
             {
                 name: "Maquillaje",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
             },
             {
                 name: "Limpieza",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
             },
         ]
     },

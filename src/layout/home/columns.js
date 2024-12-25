@@ -1,51 +1,47 @@
-import { FlatList, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
 import { categories } from "../../utils/data";
 import { Link } from "expo-router";
 
-
 export default function Columns() {
 
-
     return (
-        <FlatList
-            numColumns={2}
-            data={categories.slice(1)}
-            style={styles.flatlist}
-            contentContainerStyle={styles.columns}
-            columnWrapperStyle={styles.columns}
-            renderItem={({ item }) => {
-                return (
-                    <Link asChild href={{ pathname: "/gallery", params: { name: item.name } }}>
-                        <TouchableOpacity style={{ flex: 1 }}>
-                            <ImageBackground
-                                source={{ uri: item.image }}
-                                style={styles.container}
-                                imageStyle={{ borderRadius: 8 }}
-                            >
-                                <View style={styles.wrapper}>
-                                    <Text style={ui.h4}>{item.name}</Text>
-                                    <ArrowRightIcon width={24} height={24} black />
-                                </View>
-                            </ImageBackground>
-                        </TouchableOpacity>
-                    </Link>
-                )
-            }}
-        >
-        </FlatList>
+        <View style={styles.container}>
+            {
+                categories.slice(1).map((item) => {
+                    return (
+                        <Link asChild href={{ pathname: "/submenu", params: { category: item.name, subcategories: JSON.stringify(item.subcategories) } }}>
+                            <TouchableOpacity style={{ width: "47%" }}>
+                                <ImageBackground
+                                    source={{ uri: item.image }}
+                                    style={styles.item}
+                                    imageStyle={{ borderRadius: 8 }}
+                                >
+                                    <View style={styles.wrapper}>
+                                        <Text style={ui.h4}>{item.name}</Text>
+                                        <ArrowRightIcon width={24} height={24} black />
+                                    </View>
+                                </ImageBackground>
+                            </TouchableOpacity>
+                        </Link>
+                    )
+                })
+            }
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    flatlist: {
+    container: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 8,
+        justifyContent: "space-between",
+        alignItems: "center",
         marginBottom: 16
     },
-    columns: {
-        gap: 16
-    },
-    container: {
+    item: {
         height: 150,
         justifyContent: "flex-end",
         borderRadius: 16
