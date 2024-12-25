@@ -1,5 +1,5 @@
 import { SplashScreen, Stack, router } from "expo-router";
-import { View, StatusBar, StyleSheet, Image, Pressable } from "react-native";
+import { View, StatusBar, StyleSheet, Image, Pressable, AppState } from "react-native";
 import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
@@ -7,9 +7,32 @@ import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
+import { AdEventType, AppOpenAd, TestIds } from "react-native-google-mobile-ads";
+import { loadId } from "../src/utils/constants";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
+
+    const [OPEN_AD, SET_OPEN_ADD] = useState(null);
+    const [OPEN_AD_LOADED, SET_OPEN_ADD_LOADED] = useState(false);
+    const [OPEN_AD_SHOWED, SET_OPEN_ADD_SHOWED] = useState(false);
+
+    // Petición de anuncio durante la carga
+    useEffect(() => {
+        const appOpenAd = AppOpenAd.createForAdRequest(TestIds.APP_OPEN);
+        SET_OPEN_ADD(appOpenAd)
+        appOpenAd.load();
+
+        appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
+            SET_OPEN_ADD_LOADED(true)
+        });
+        appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
+            SET_OPEN_ADD_SHOWED(true)
+        });
+        appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
+            SET_OPEN_ADD_SHOWED(true)
+        });
+    }, [])
 
     // Carga de fuentes.
     const [fontsLoaded] = useFonts({
@@ -19,11 +42,15 @@ export default function Layout() {
         "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
 
+
     useEffect(() => {
-        if (fontsLoaded) {
+        if (!OPEN_AD_SHOWED && OPEN_AD_LOADED) {
+            // OPEN_AD.show();
+        }
+        if (fontsLoaded && OPEN_AD_SHOWED) {
             SplashScreen.hideAsync();
         }
-    }, [fontsLoaded])
+    }, [fontsLoaded, OPEN_AD_LOADED, OPEN_AD_SHOWED])
 
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
@@ -57,6 +84,10 @@ export default function Layout() {
             setAdTrigger(0);
         }
     }, [adTrigger])
+
+
+
+
 
     // Esperar hasta que las fuentes se carguen
     if (!fontsLoaded) {
