@@ -13,7 +13,7 @@ import { bannerId } from "../src/utils/constants";
 export default function gallery() {
 
     const params = useLocalSearchParams();
-    const { tag } = params;
+    const { subcategory, tag } = params;
     const [images, setImages] = useState([]);
     const { setAdTrigger } = useContext(DataContext);
 
@@ -37,7 +37,7 @@ export default function gallery() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
-            <Header back />
+            <Header title={subcategory} back />
             
             <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             {

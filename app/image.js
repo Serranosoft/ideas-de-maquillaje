@@ -3,8 +3,6 @@ import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View, I
 import { ui } from "../src/utils/styles";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
-// import Image from 'react-native-image-progress';
-import * as Progress from 'react-native-progress';
 import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 import Header from "../src/components/header";

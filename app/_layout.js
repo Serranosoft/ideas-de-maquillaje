@@ -46,7 +46,7 @@ export default function Layout() {
 
     useEffect(() => {
         if (!OPEN_AD_SHOWED && OPEN_AD_LOADED) {
-            // OPEN_AD.show();
+            OPEN_AD.show();
         }
         if (fontsLoaded && OPEN_AD_SHOWED) {
             SplashScreen.hideAsync();

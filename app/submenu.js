@@ -12,7 +12,7 @@ export default function submenu() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
-            <Header back />
+            <Header title={category} back />
 
             <FlatList
                 numColumns={2}
@@ -22,7 +22,7 @@ export default function submenu() {
                 columnWrapperStyle={styles.columns}
                 renderItem={({ item }) => {
                     return (
-                        <Link asChild href={{ pathname: "/gallery", params: { tag: `${category.toLowerCase().split(' ').join("-")}-${item.name.toLowerCase().split(' ').join("-")}` } }}>
+                        <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${category.toLowerCase().split(' ').join("-")}-${item.name.toLowerCase().split(' ').join("-")}` } }}>
                             <TouchableOpacity style={{ flex: 1 }}>
                                 <ImageBackground
                                     source={{ uri: item.image }}

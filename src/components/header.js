@@ -32,6 +32,9 @@ export default function Header({ image, title, back, home  }) {
                         </TouchableOpacity>
                 }
                 {
+                    title && <Text style={ui.h3}>{title}</Text>
+                }
+                {
                     home && 
                         <View style={[styles.item, { backgroundColor: "#fff" }]}>
                             <HappyFaceIcon width={40} height={40} />
