@@ -9,9 +9,6 @@ export default function submenu() {
     const params = useLocalSearchParams();
     const { category, subcategories } = params;
 
-    console.log(category);
-    console.log(JSON.parse(subcategories));
-
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />

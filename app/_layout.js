@@ -9,6 +9,7 @@ import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
 import { AdEventType, AppOpenAd, TestIds } from "react-native-google-mobile-ads";
 import { loadId } from "../src/utils/constants";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -98,10 +99,9 @@ export default function Layout() {
         <View style={styles.container}>
             <AdsHandler ref={adsHandlerRef} adType={[0]} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
-                <Stack />
-                {/* <Pressable onPress={() => router.push("/favorites")} style={ui.floatingWrapper}>
-                    <Image style={ui.floatingImg} source={require("../assets/favorites.png")} />
-                </Pressable> */}
+                <GestureHandlerRootView style={styles.wrapper}>
+                    <Stack />
+                </GestureHandlerRootView>
             </DataContext.Provider>
             <StatusBar style="light" />
         </View>
@@ -115,5 +115,11 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight,
         paddingHorizontal: 16,
         backgroundColor: "#fff"
-    }
+    },
+    wrapper: {
+        flex: 1,
+        width: "100%",
+        alignSelf: "center",
+        justifyContent: "center",
+    },
 })
