@@ -28,9 +28,18 @@ export default function gallery() {
         .then(data => data);
 
         let images = [];
-        response.resources.forEach((image) => {
-            images.push("https://res.cloudinary.com/dadujos6v/image/upload/"+image["public_id"]);
+        const sorted = response.resources.sort((a, b) => {
+            if (a["public_id"] > b["public_id"]) {
+                return 1;
+            } else {
+                return -1
+            }
         })
+
+        sorted.forEach((image) => {
+            images.push("https://res.cloudinary.com/dadujos6v/image/upload/" + image["public_id"]);
+        })
+
         setImages(images);
     }
 
