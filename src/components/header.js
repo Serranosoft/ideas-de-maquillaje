@@ -6,7 +6,12 @@ import MenuIcon from "../icons/menu";
 import HappyFaceIcon from "../icons/happy-face";
 import ArrowLeftIcon from "../icons/arrow-left";
 
-export default function Header({ image, title, back, home  }) {
+export default function Header({ 
+    title, 
+    back, 
+    home, 
+    favorite
+}) {
 
     const router = useRouter();
 
@@ -33,6 +38,9 @@ export default function Header({ image, title, back, home  }) {
                 }
                 {
                     title && <Text style={ui.h3}>{title}</Text>
+                }
+                {
+                    favorite && <Favorite image={favorite} />
                 }
                 {
                     home && 

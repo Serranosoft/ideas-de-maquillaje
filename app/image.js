@@ -1,15 +1,13 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { Image as ReactNativeImage, Pressable, StyleSheet, ToastAndroid, View, Image, ScrollView, TouchableOpacity, Text } from "react-native";
-import { ui } from "../src/utils/styles";
+import { StyleSheet, ToastAndroid, View, TouchableOpacity } from "react-native";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
-import { BannerAd, BannerAdSize, TestIds } from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 import Header from "../src/components/header";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import Actions from "../src/components/actions";
 import DownloadIcon from "../src/icons/download";
-import Button from "../src/components/button";
 
 export default function ImageWrapper() {
 
@@ -70,7 +68,7 @@ export default function ImageWrapper() {
                 style={styles.container}
             >
                 <Stack.Screen options={{ headerShown: false }} />
-                <Header back />
+                <Header back favorite={image} />
                 <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
                 <View style={styles.wrapper}>
                     <ImageZoom

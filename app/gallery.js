@@ -53,7 +53,6 @@ export default function gallery() {
                 images.length > 0 ?
                     <View style={styles.list}>
                         <FlatList
-                            contentContainerStyle={{ paddingBottom: 16 }}
                             data={images}
                             numColumns={2}
                             initialNumToRender={8}
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         paddingTop: 24,
-        paddingBottom: 60
+        paddingBottom: 24
     },
 
     title: {

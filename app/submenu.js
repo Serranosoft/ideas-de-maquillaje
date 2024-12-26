@@ -3,20 +3,19 @@ import { FlatList, ImageBackground, ScrollView, StyleSheet, Text, TouchableOpaci
 import ArrowRightIcon from "../src/icons/arrow-right";
 import { ui } from "../src/utils/styles";
 import Header from "../src/components/header";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { bannerId } from "../src/utils/constants";
 
 export default function submenu() {
 
     const params = useLocalSearchParams();
     const { category, subcategories } = params;
 
-    console.log(category);
-    console.log(subcategories);
-
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
             <Header title={category} back />
-
+            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
             <FlatList
                 numColumns={2}
                 data={JSON.parse(subcategories)}
