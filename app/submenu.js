@@ -19,7 +19,6 @@ export default function submenu() {
             <FlatList
                 numColumns={2}
                 data={JSON.parse(subcategories)}
-                style={styles.flatlist}
                 contentContainerStyle={styles.columns}
                 columnWrapperStyle={styles.columns}
                 renderItem={({ item }) => {
@@ -53,11 +52,7 @@ const styles = StyleSheet.create({
         paddingBottom: 24,
         backgroundColor: "#fff",
     },
-    flatlist: {
-        // paddingTop: 32,
-        // paddingBottom: 16
-        // flex: 1,
-    },
+
     columns: {
         gap: 16
     },

@@ -17,15 +17,13 @@ export default function Favorites() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen options={{ header: () => <Header title={"Mis maquillajes favoritos"} /> }} />
+            <Stack.Screen options={{ headerShown: false }} />
+            <Header title={"Mis favoritos"} back />
             {
                 favoriteImages.length > 0 ?
-                    <View style={styles.list}>
                         <FlatList
-                            contentContainerStyle={{ paddingBottom: 16 }}
                             data={favoriteImages}
                             numColumns={2}
-                            initialNumToRender={6}
                             renderItem={({ item, i }) => {
                                 return (
                                     <View key={i} style={styles.itemWrapper}>
@@ -38,7 +36,6 @@ export default function Favorites() {
                                 )
                             }}
                         />
-                    </View>
                     :
                     <Text style={{ fontSize: 27, textAlign: "center" }}>No tienes ningún diseño guardado en favoritos</Text>
 
@@ -50,14 +47,9 @@ export default function Favorites() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap: 24,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-
-    list: {
-        flex: 1,
-        width: "100%",
+        paddingTop: 24,
+        paddingBottom: 24,
+        backgroundColor: "#fff",
     },
 
     itemWrapper: {
