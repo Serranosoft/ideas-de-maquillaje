@@ -5,18 +5,23 @@ export const categories = [
         subcategories: [
             {
                 name: "Ojos",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/ojos/recurso.jpg"
             },
             {
                 name: "Labios",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/labios/recurso.jpg"
             },
             {
                 name: "Cejas",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/cejas/recurso.jpg"
             },
             {
                 name: "Cara",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/cara/recurso-3.jpg"
             },
             {
                 name: "Delineados",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/delineados/recurso.jpg"
             },
         ]
     },
@@ -25,13 +30,20 @@ export const categories = [
         image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949211/maquillaje/ykgfsofvrhjeh89hufxs.jpg",
         subcategories: [
             {
-                name: "Tutorial 1",
+                name: "Cat Eyes",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735240704/g5mbv8bcdpdpbxwmfybj.jpg"
             },
             {
-                name: "Tutorial 2",
+                name: "Foxy Eyes",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735240704/qs5y8bshvbzmltqcepmz.jpg"
             },
             {
-                name: "Tutorial 3",
+                name: "Maquillaje Completo",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735240704/ms8snku0dzaiwram51j5.jpg"
+            },
+            {
+                name: "Smokey Eyes",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735240704/g0ymh2dlqmtyiwvmfu7o.jpg"
             },
         ]
     },
@@ -40,20 +52,20 @@ export const categories = [
         image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/uijeqaepqmt2y6nkeim4.jpg",
         subcategories: [
             {
-                name: "Combinacion de colores",
-                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
+                name: "Colores",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735161142/consejos/combinacion-de-colores/recurso-3.jpg"
             },
             {
                 name: "Cuidados",
-                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/consejos/cuidados/recurso-2.jpg"
             },
             {
                 name: "Maquillaje",
-                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/consejos/maquillaje/recurso-2.jpg"
             },
             {
                 name: "Limpieza",
-                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735151840/consejos/cuidados/recurso.jpg"
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/consejos/limpieza/recurso-5.jpg"
             },
         ]
     },
@@ -63,12 +75,15 @@ export const categories = [
         subcategories: [
             {
                 name: "Brochas",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735161343/cuidados/brochas/recurso-7.jpg"
             },
             {
                 name: "Skincare",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/cuidados/skincare/recurso-3.jpg"
             },
             {
                 name: "Rutinas",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/cuidados/rutinas/recurso-2.jpg"
             },
         ]
     },
@@ -78,24 +93,31 @@ export const categories = [
         subcategories: [
             {
                 name: "Bodas",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/bodas/recurso-2.jpg"
             },
             {
                 name: "Fiesta",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/fiesta/recurso-2.jpg"
             },
             {
                 name: "Elegante",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/elegante/recurso-2.jpg"
             },
             {
                 name: "Natural",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/natural/recurso-2.jpg"
             },
             {
                 name: "Llamativo",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/llamativo/recurso-2.jpg"
             },
             {
                 name: "Con delineado",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/con-delineado/recurso-2.jpg"
             },
             {
                 name: "Pieles oscuras",
+                image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/pieles-oscuras/recurso-4.jpg"
             },
         ]
     }

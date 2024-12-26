@@ -2,22 +2,25 @@ import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react
 import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
 import { categories } from "../../utils/data";
+import { Link } from "expo-router";
 
 export default function Hero() {
 
     return (
-        <TouchableOpacity >
-            <ImageBackground
-                source={{ uri: categories[0].image }}
-                imageStyle={{ borderRadius: 20 }}
-                style={styles.container}
-            >
-                <View style={styles.wrapper}>
-                    <Text style={ui.h3}>{categories[0].name}</Text>
-                    <ArrowRightIcon width={32} height={32} black />
-                </View>
-            </ImageBackground>
-        </TouchableOpacity>
+        <Link asChild href={{ pathname: "/submenu", params: { category: categories[0].name, subcategories: JSON.stringify(categories[0].subcategories) } }}>
+            <TouchableOpacity >
+                <ImageBackground
+                    source={{ uri: categories[0].image }}
+                    imageStyle={{ borderRadius: 20 }}
+                    style={styles.container}
+                >
+                    <View style={styles.wrapper}>
+                        <Text style={ui.h3}>{categories[0].name}</Text>
+                        <ArrowRightIcon width={32} height={32} black />
+                    </View>
+                </ImageBackground>
+            </TouchableOpacity>
+        </Link>
     )
 }
 

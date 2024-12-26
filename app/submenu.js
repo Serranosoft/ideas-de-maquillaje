@@ -9,6 +9,9 @@ export default function submenu() {
     const params = useLocalSearchParams();
     const { category, subcategories } = params;
 
+    console.log(category);
+    console.log(subcategories);
+
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
@@ -48,18 +51,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 24,
-        paddingBottom: 60,
+        paddingBottom: 24,
         backgroundColor: "#fff",
     },
     flatlist: {
-        paddingTop: 32,
-        paddingBottom: 16
+        // paddingTop: 32,
+        // paddingBottom: 16
+        // flex: 1,
     },
     columns: {
         gap: 16
     },
     item: {
-        height: 200,
+        height: 250,
         justifyContent: "flex-end",
         borderRadius: 16
     },

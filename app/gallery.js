@@ -64,7 +64,7 @@ export default function gallery() {
                                             <Pressable style={styles.item} onPress={() => {
                                                 setAdTrigger((adTrigger) => adTrigger + 1);
                                             }}>
-                                                <Image transition={1000} style={styles.image} source={item} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
+                                                <Image transition={1000} style={styles.image} source={item} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} /* contentFit="contain" */ />
                                             </Pressable>
                                         </Link>
                                     </View>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 
     itemWrapper: {
         flex: 1,
-        height: 200,
+        height: 250,
         margin: 5,
     },
 

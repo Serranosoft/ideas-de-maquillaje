@@ -71,7 +71,7 @@ export default function ImageWrapper() {
             >
                 <Stack.Screen options={{ headerShown: false }} />
                 <Header back />
-                <BannerAd unitId={TestIds.BANNER} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
+                <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
                 <View style={styles.wrapper}>
                     <ImageZoom
                         onResetAnimationEnd={false}
