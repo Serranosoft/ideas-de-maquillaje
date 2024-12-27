@@ -7,8 +7,7 @@ import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
-import { AdEventType, AppOpenAd, TestIds } from "react-native-google-mobile-ads";
-import { loadId } from "../src/utils/constants";
+
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
@@ -21,44 +20,6 @@ export default function Layout() {
         "Semibold": require("../assets/fonts/Reckless/SemiBold.ttf"),
         "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
-
-    
-    const openAdRef = useRef(null);
-    const openAdLoadedRef = useRef(false);
-    const [appStateChanged, setAppStateChanged] = useState(AppState.currentState);
-
-    useEffect(() => {
-        if (appStateChanged == "active") {
-            handleOpenAd();
-        }
-    }, [appStateChanged])
-    
-    function handleOpenAd() {
-        if (openAdRef.current) {
-            if (openAdLoadedRef.current) {
-                openAdRef.current.show();
-            }
-        }
-    }
-
-    useEffect(() => {
-        const appOpenAd = AppOpenAd.createForAdRequest(TestIds.APP_OPEN);
-        appOpenAd.load();
-
-        appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
-            openAdRef.current = appOpenAd;
-            openAdLoadedRef.current = true;
-        });
-        appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
-            openAdRef.current.load();
-            openAdLoadedRef.current = false;
-        });
-        appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
-        });
-        AppState.addEventListener("change", nextAppState => {
-            setAppStateChanged(nextAppState);
-        })
-    }, [])
 
     useEffect(() => {
         if (fontsLoaded) {
@@ -110,7 +71,7 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} adType={[0]} />
+            <AdsHandler ref={adsHandlerRef} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
                 <GestureHandlerRootView style={styles.wrapper}>
                     <Stack />
