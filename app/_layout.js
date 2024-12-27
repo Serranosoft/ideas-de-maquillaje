@@ -14,65 +14,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
 
-    const [OPEN_AD, SET_OPEN_ADD] = useState(null);
-    const [OPEN_AD_LOADED, SET_OPEN_ADD_LOADED] = useState(false);
-    const OPEN_AD_REF = useRef(OPEN_AD);
-    const OPEN_AD_LOADED_REF = useRef(OPEN_AD_LOADED);
-    const [OPEN_AD_SHOWED, SET_OPEN_ADD_SHOWED] = useState(false);
-    const appState = useRef(AppState.currentState);
-    const [appStateVisible, setAppStateVisible] = useState(appState.current);
-
-    // Petición de anuncio durante la carga
-    useEffect(() => {
-        const appOpenAd = AppOpenAd.createForAdRequest(TestIds.APP_OPEN);
-        SET_OPEN_ADD(appOpenAd)
-        appOpenAd.load();
-
-        appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
-            console.log("ad loaded.");
-            SET_OPEN_ADD_LOADED(true)
-        });
-        appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
-            SET_OPEN_ADD_SHOWED(true);
-            appOpenAd.load();
-        });
-        appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
-            SET_OPEN_ADD_SHOWED(true)
-        });
-
-        AppState.addEventListener("change", nextAppState => {
-            if (appState.current.match(/inactive|background/) && nextAppState === "active") {
-                if (OPEN_AD_REF.current && OPEN_AD_LOADED_REF.current === true) {
-                    OPEN_AD_REF.current.show();
-                    SET_OPEN_ADD_LOADED(false);
-                }
-            }
-            appState.current = nextAppState;
-            setAppStateVisible(appState.current);
-        });
-
-    }, [])
-
-    useEffect(() => {
-        OPEN_AD_LOADED_REF.current = OPEN_AD_LOADED;
-    }, [OPEN_AD_LOADED]);
-    useEffect(() => {
-        if (OPEN_AD) {
-            OPEN_AD_REF.current = OPEN_AD;
-        }
-    }, [OPEN_AD]);
-
-    useEffect(() => {
-        if (!OPEN_AD_SHOWED && OPEN_AD_LOADED) {
-            console.log("2");
-            OPEN_AD.show();
-            SET_OPEN_ADD_LOADED(false);
-        }
-        if (fontsLoaded && OPEN_AD_SHOWED) {
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded, OPEN_AD_LOADED, OPEN_AD_SHOWED])
-
     // Carga de fuentes.
     const [fontsLoaded] = useFonts({
         "Regular": require("../assets/fonts/Reckless/Regular.ttf"),
@@ -80,6 +21,51 @@ export default function Layout() {
         "Semibold": require("../assets/fonts/Reckless/SemiBold.ttf"),
         "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
+
+    
+    const openAdRef = useRef(null);
+    const openAdLoadedRef = useRef(false);
+    const [appStateChanged, setAppStateChanged] = useState(AppState.currentState);
+
+    useEffect(() => {
+        if (appStateChanged == "active") {
+            handleOpenAd();
+        }
+    }, [appStateChanged])
+    
+    function handleOpenAd() {
+        if (openAdRef.current) {
+            if (openAdLoadedRef.current) {
+                openAdRef.current.show();
+            }
+        }
+    }
+
+    useEffect(() => {
+        const appOpenAd = AppOpenAd.createForAdRequest(TestIds.APP_OPEN);
+        appOpenAd.load();
+
+        appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
+            openAdRef.current = appOpenAd;
+            openAdLoadedRef.current = true;
+        });
+        appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
+            openAdRef.current.load();
+            openAdLoadedRef.current = false;
+        });
+        appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
+        });
+        AppState.addEventListener("change", nextAppState => {
+            setAppStateChanged(nextAppState);
+        })
+    }, [])
+
+    useEffect(() => {
+        if (fontsLoaded) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded])
+    
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
         async function getFavorites() {
