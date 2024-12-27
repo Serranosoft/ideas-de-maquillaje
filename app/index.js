@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { ui } from "../src/utils/styles";
 import Title from "../src/layout/home/title";
 import Header from "../src/components/header";
@@ -11,6 +11,8 @@ import Feedback from "../src/layout/home/feedback";
 
 export default function List() {
 
+    const router = useRouter();
+
     return (
         <ScrollView 
             style={styles.container}
@@ -21,7 +23,7 @@ export default function List() {
             <Title />
             <Hero />
             <Columns />
-            <Button border>
+            <Button border evt={() => router.navigate("/favorites")}>
                 <HeartIcon
                     ball
                     width={24}
@@ -31,47 +33,6 @@ export default function List() {
             </Button>
             <Feedback />
 
-
-
-
-
-
-
-
-
-
-            {/* <View style={styles.title}>
-                <Text style={ui.h2}>Ideas de maquillaje para todas las temporadas</Text>
-            </View>
-            {
-                categories.length > 0 ?
-                    <View style={styles.list}>
-                        <FlatList
-                            contentContainerStyle={{ paddingBottom: 16}}
-                            data={categories}
-                            numColumns={2}
-                            initialNumToRender={6}
-                            renderItem={({ item, i }) => {
-                                return (
-                                    <Animated.View key={i} style={styles.itemWrapper}>
-                                        <Link asChild href={{ pathname: "/gallery", params: { name: item.name } }}>
-                                            <Pressable onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
-                                                <View style={styles.item}>
-                                                    <Image transition={1000} style={styles.image} source={item.image} placeholder={"L8FOP=~UKOxt$mI9IAbGBQw[%MRk"} />
-                                                    <View style={styles.info}>
-                                                        <Text style={[ui.h3, ui.bold, { color: "#fff", textAlign: "center", fontWeight: "bold" }]}>{item.name}</Text>
-                                                    </View>
-                                                </View>
-                                            </Pressable>
-                                        </Link>
-                                    </Animated.View>
-                                )
-                            }}
-                        />
-                    </View>
-                    :
-                    <LottieView source={require("../assets/lottie/loading-animation.json")} loop={true} autoPlay={true} />
-            } */}
         </ScrollView>
     )
 }

@@ -32,7 +32,7 @@
                 "android.permission.WRITE_EXTERNAL_STORAGE",
                 "android.permission.ACCESS_MEDIA_LOCATION"
             ],
-            "versionCode": 4,
+            "versionCode": 6,
             "package": "com.paulaymanu113.maquillaje"
         },
         "plugins": [

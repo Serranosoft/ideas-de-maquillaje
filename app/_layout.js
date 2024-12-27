@@ -1,6 +1,6 @@
 import { SplashScreen, Stack, router } from "expo-router";
 import { View, StatusBar, StyleSheet, Image, Pressable, AppState } from "react-native";
-import { createRef, useEffect, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext } from "../src/DataContext";
 import { ui } from "../src/utils/styles";
@@ -16,7 +16,11 @@ export default function Layout() {
 
     const [OPEN_AD, SET_OPEN_ADD] = useState(null);
     const [OPEN_AD_LOADED, SET_OPEN_ADD_LOADED] = useState(false);
+    const OPEN_AD_REF = useRef(OPEN_AD);
+    const OPEN_AD_LOADED_REF = useRef(OPEN_AD_LOADED);
     const [OPEN_AD_SHOWED, SET_OPEN_ADD_SHOWED] = useState(false);
+    const appState = useRef(AppState.currentState);
+    const [appStateVisible, setAppStateVisible] = useState(appState.current);
 
     // Petición de anuncio durante la carga
     useEffect(() => {
@@ -25,15 +29,49 @@ export default function Layout() {
         appOpenAd.load();
 
         appOpenAd.addAdEventListener(AdEventType.LOADED, () => {
+            console.log("ad loaded.");
             SET_OPEN_ADD_LOADED(true)
         });
         appOpenAd.addAdEventListener(AdEventType.CLOSED, () => {
-            SET_OPEN_ADD_SHOWED(true)
+            SET_OPEN_ADD_SHOWED(true);
+            appOpenAd.load();
         });
         appOpenAd.addAdEventListener(AdEventType.ERROR, () => {
             SET_OPEN_ADD_SHOWED(true)
         });
+
+        AppState.addEventListener("change", nextAppState => {
+            if (appState.current.match(/inactive|background/) && nextAppState === "active") {
+                if (OPEN_AD_REF.current && OPEN_AD_LOADED_REF.current === true) {
+                    OPEN_AD_REF.current.show();
+                    SET_OPEN_ADD_LOADED(false);
+                }
+            }
+            appState.current = nextAppState;
+            setAppStateVisible(appState.current);
+        });
+
     }, [])
+
+    useEffect(() => {
+        OPEN_AD_LOADED_REF.current = OPEN_AD_LOADED;
+    }, [OPEN_AD_LOADED]);
+    useEffect(() => {
+        if (OPEN_AD) {
+            OPEN_AD_REF.current = OPEN_AD;
+        }
+    }, [OPEN_AD]);
+
+    useEffect(() => {
+        if (!OPEN_AD_SHOWED && OPEN_AD_LOADED) {
+            console.log("2");
+            OPEN_AD.show();
+            SET_OPEN_ADD_LOADED(false);
+        }
+        if (fontsLoaded && OPEN_AD_SHOWED) {
+            SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded, OPEN_AD_LOADED, OPEN_AD_SHOWED])
 
     // Carga de fuentes.
     const [fontsLoaded] = useFonts({
@@ -42,17 +80,6 @@ export default function Layout() {
         "Semibold": require("../assets/fonts/Reckless/SemiBold.ttf"),
         "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
-
-
-    useEffect(() => {
-        if (!OPEN_AD_SHOWED && OPEN_AD_LOADED) {
-            OPEN_AD.show();
-        }
-        if (fontsLoaded && OPEN_AD_SHOWED) {
-            SplashScreen.hideAsync();
-        }
-    }, [fontsLoaded, OPEN_AD_LOADED, OPEN_AD_SHOWED])
-
     const [favorites, setFavorites] = useState([]);
     useEffect(() => {
         async function getFavorites() {
