@@ -3,8 +3,12 @@ import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
 import { categories } from "../../utils/data";
 import { Link } from "expo-router";
+import { useContext } from "react";
+import { DataContext } from "../../DataContext";
 
 export default function Columns() {
+
+    const { setAdTrigger } = useContext(DataContext);
 
     return (
         <View style={styles.container}>
@@ -12,7 +16,7 @@ export default function Columns() {
                 categories.slice(1).map((item) => {
                     return (
                         <Link asChild href={{ pathname: "/submenu", params: { category: item.name, subcategories: JSON.stringify(item.subcategories) } }}>
-                            <TouchableOpacity style={{ width: "47%" }}>
+                            <TouchableOpacity style={{ width: "47%" }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}
                                     style={styles.item}

@@ -60,10 +60,6 @@ export default function Layout() {
         }
     }, [adTrigger])
 
-
-
-
-
     // Esperar hasta que las fuentes se carguen
     if (!fontsLoaded) {
         return null;
@@ -71,7 +67,7 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} />
+            <AdsHandler ref={adsHandlerRef} adTrigger={adTrigger} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
                 <GestureHandlerRootView style={styles.wrapper}>
                     <Stack />

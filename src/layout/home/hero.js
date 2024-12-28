@@ -3,12 +3,16 @@ import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
 import { categories } from "../../utils/data";
 import { Link } from "expo-router";
+import { useContext } from "react";
+import { DataContext } from "../../DataContext";
 
 export default function Hero() {
 
+    const { setAdTrigger } = useContext(DataContext);
+
     return (
         <Link asChild href={{ pathname: "/submenu", params: { category: categories[0].name, subcategories: JSON.stringify(categories[0].subcategories) } }}>
-            <TouchableOpacity >
+            <TouchableOpacity onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                 <ImageBackground
                     source={{ uri: categories[0].image }}
                     imageStyle={{ borderRadius: 20 }}

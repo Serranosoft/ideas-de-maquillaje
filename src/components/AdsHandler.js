@@ -41,6 +41,15 @@ const AdsHandler = forwardRef((props, ref) => {
         }
 
     }, [isClosedIntersitial, props.closedIntersitialCallback])
+    
+    
+    function showIntersitialAd() {
+        if (isLoadedIntersitial) {
+            showIntersitial();
+        } else {
+            loadIntersitial();
+        }
+    }
 
 
     /** APP OPEN ADS (BACKGROUND -> FOREGROUND -> SHOW ADD) */
@@ -53,7 +62,10 @@ const AdsHandler = forwardRef((props, ref) => {
     }, [appStateChanged])
 
     function handleOpenAd() {
-       openAdRef.current && openAdLoadedRef.current && openAdRef.current.show();
+        // Cuando adtrigger es 0 significa que acaba de hacer un posible trigger de un intersitialAd
+        if (props.adTrigger != 0) {
+            openAdRef.current && openAdLoadedRef.current && openAdRef.current.show();
+        }
     }
 
     useEffect(() => {
@@ -76,13 +88,6 @@ const AdsHandler = forwardRef((props, ref) => {
     }, [])
 
 
-    function showIntersitialAd() {
-        if (isLoadedIntersitial) {
-            showIntersitial();
-        } else {
-            loadIntersitial();
-        }
-    }
 
     return <></>
 })

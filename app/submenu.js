@@ -5,9 +5,12 @@ import { ui } from "../src/utils/styles";
 import Header from "../src/components/header";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
+import { useContext } from "react";
+import { DataContext } from "../src/DataContext";
 
 export default function submenu() {
 
+    const { setAdTrigger } = useContext(DataContext);
     const params = useLocalSearchParams();
     const { category, subcategories } = params;
 
@@ -24,7 +27,7 @@ export default function submenu() {
                 renderItem={({ item }) => {
                     return (
                         <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${category.toLowerCase().split(' ').join("-")}-${item.name.toLowerCase().split(' ').join("-")}` } }}>
-                            <TouchableOpacity style={{ flex: 1 }}>
+                            <TouchableOpacity style={{ flex: 1 }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}
                                     style={styles.item}
