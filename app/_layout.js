@@ -51,6 +51,7 @@ export default function Layout() {
 
     // Gestión de anuncios
     const [adTrigger, setAdTrigger] = useState(0);
+    const [showOpenAd, setShowOpenAd] = useState(true);
     const adsHandlerRef = createRef();
 
     useEffect(() => {
@@ -67,8 +68,8 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} adTrigger={adTrigger} />
-            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger }}>
+            <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} />
+            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd }}>
                 <GestureHandlerRootView style={styles.wrapper}>
                     <Stack />
                 </GestureHandlerRootView>

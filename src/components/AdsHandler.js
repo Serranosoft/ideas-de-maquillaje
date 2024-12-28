@@ -10,7 +10,7 @@ const AdsHandler = forwardRef((props, ref) => {
         isLoaded: isLoadedIntersitial,
         isClosed: isClosedIntersitial,
         load: loadIntersitial,
-        show: showIntersitial } = useInterstitialAd(intersitialId);
+        show: showIntersitial } = useInterstitialAd(TestIds.INTERSTITIAL);
 
     useEffect(() => {
         loadIntersitial();
@@ -21,6 +21,7 @@ const AdsHandler = forwardRef((props, ref) => {
             loadIntersitial();
         },
         showIntersitialAd() {
+            props.setShowOpenAd(false);
             showIntersitialAd();
         },
         isClosedIntersitial() {
@@ -63,8 +64,10 @@ const AdsHandler = forwardRef((props, ref) => {
 
     function handleOpenAd() {
         // Cuando adtrigger es 0 significa que acaba de hacer un posible trigger de un intersitialAd
-        if (props.adTrigger != 0) {
+        if (props.showOpenAd) {
             openAdRef.current && openAdLoadedRef.current && openAdRef.current.show();
+        } else {
+            props.setShowOpenAd(true);
         }
     }
 

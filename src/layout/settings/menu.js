@@ -7,14 +7,19 @@ import * as StoreReview from 'expo-store-review';
 import LanguageIcon from "../../icons/language";
 import ShareIcon from "../../icons/share";
 import StarIcon from "../../icons/star";
+import { useContext } from "react";
+import { DataContext } from "../../DataContext";
 
 export default function Menu() {
 
     const router = useRouter();
 
+    const { setShowOpenAd } = useContext(DataContext);
+
     const url = 'https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US';
     async function share() {
         try {
+            setShowOpenAd(false);
             await Share.share({ message: ('Tutoriales e Ideas de Maquillaje 💫 | Tu app de belleza 🎀' + '\n' + url) });
         } catch (error) {
             alert(error.message);
@@ -23,6 +28,7 @@ export default function Menu() {
 
     async function requestReview() {
         if (await StoreReview.hasAction()) {
+            setShowOpenAd(false);
             StoreReview.requestReview()
         }
     }
