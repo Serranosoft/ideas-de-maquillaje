@@ -12,7 +12,7 @@ export default function submenu() {
 
     const { setAdTrigger } = useContext(DataContext);
     const params = useLocalSearchParams();
-    const { category, subcategories } = params;
+    const { category, original, subcategories } = params;
 
     return (
         <View style={styles.container}>
@@ -26,7 +26,7 @@ export default function submenu() {
                 columnWrapperStyle={styles.columns}
                 renderItem={({ item }) => {
                     return (
-                        <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${category.toLowerCase().split(' ').join("-")}-${item.name.toLowerCase().split(' ').join("-")}` } }}>
+                        <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${original.toLowerCase().split(' ').join("-")}-${item.original.toLowerCase().split(' ').join("-")}` } }}>
                             <TouchableOpacity style={{ flex: 1 }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}

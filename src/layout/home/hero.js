@@ -1,25 +1,26 @@
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
-import { categories } from "../../utils/data";
+import { GetCategories } from "../../utils/data";
 import { Link } from "expo-router";
 import { useContext } from "react";
-import { DataContext } from "../../DataContext";
+import { DataContext, LangContext } from "../../DataContext";
 
 export default function Hero() {
 
     const { setAdTrigger } = useContext(DataContext);
+    const { language } = useContext(LangContext);
 
     return (
-        <Link asChild href={{ pathname: "/submenu", params: { category: categories[0].name, subcategories: JSON.stringify(categories[0].subcategories) } }}>
+        <Link asChild href={{ pathname: "/submenu", params: { category: GetCategories(language)[0].name, original: GetCategories(language)[0].original, subcategories: JSON.stringify(GetCategories(language)[0].subcategories) } }}>
             <TouchableOpacity onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                 <ImageBackground
-                    source={{ uri: categories[0].image }}
+                    source={{ uri: GetCategories(language)[0].image }}
                     imageStyle={{ borderRadius: 20 }}
                     style={styles.container}
                 >
                     <View style={styles.wrapper}>
-                        <Text style={ui.h3}>{categories[0].name}</Text>
+                        <Text style={ui.h3}>{GetCategories(language)[0].name}</Text>
                         <ArrowRightIcon width={32} height={32} black />
                     </View>
                 </ImageBackground>

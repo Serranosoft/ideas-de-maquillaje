@@ -30,12 +30,11 @@ export default function LanguageModal({ langModal, setLangModal }) {
             transparent={true}
             visible={langModal}
             onRequestClose={() => {
-                Alert.alert('Modal has been closed.');
                 setLangModal(!langModal);
             }}>
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
-                    <Text style={ui.h3}>Cambiar idioma</Text>
+                    <Text style={ui.h3}>{language.t("_langChangeLanguage")}</Text>
                     {
                         languages.map((language, index) => {
                             return (
@@ -49,7 +48,7 @@ export default function LanguageModal({ langModal, setLangModal }) {
                     <Pressable
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setLangModal(!langModal)}>
-                        <Text style={styles.textStyle}>Aceptar</Text>
+                        <Text style={styles.textStyle}>{language.t("_langChangeLanguage")}</Text>
                     </Pressable>
                 </View>
             </View>

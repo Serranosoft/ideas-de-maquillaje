@@ -23,6 +23,7 @@ export default function gallery() {
     }, [])
 
     async function getImages() {
+        console.log(tag);
         const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${tag}.json`)
         .then((response) => response.json())
         .then(data => data);

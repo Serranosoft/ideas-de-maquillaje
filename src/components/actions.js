@@ -4,9 +4,11 @@ import { useContext } from "react";
 import PinchIcon from "../icons/pinch";
 import DoubleTapIcon from "./double-tap";
 import { ui } from "../utils/styles";
+import { LangContext } from "../DataContext";
 
 export default function Actions() {
 
+    const { language } = useContext(LangContext);
 
     return (
         <View style={styles.container}>

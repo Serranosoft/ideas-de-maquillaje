@@ -8,10 +8,13 @@ import Columns from "../src/layout/home/columns";
 import Button from "../src/components/button";
 import HeartIcon from "../src/icons/heart";
 import Feedback from "../src/layout/home/feedback";
+import { useContext } from "react";
+import { LangContext } from "../src/DataContext";
 
 export default function List() {
 
     const router = useRouter();
+    const { language } = useContext(LangContext);
 
     return (
         <ScrollView 

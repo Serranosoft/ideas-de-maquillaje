@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { DataContext } from "../DataContext";
+import { DataContext, LangContext } from "../DataContext";
 import { Pressable, StyleSheet, ToastAndroid, View } from "react-native";
 import HeartRemoveIcon from "../icons/heart-remove";
 import HeartAddIcon from "../icons/heart-add";
@@ -9,6 +9,7 @@ export default function Favorite({ image }) {
 
     const [isFavorite, setIsFavorite] = useState(false);
     const { favorites, setFavorites } = useContext(DataContext)
+    const { language } = useContext(LangContext);
 
     // Al entrar, comprobar si es favorito o no.
     useEffect(() => {

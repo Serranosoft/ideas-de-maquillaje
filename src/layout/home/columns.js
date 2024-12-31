@@ -1,21 +1,22 @@
 import { ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import ArrowRightIcon from "../../icons/arrow-right";
 import { ui } from "../../utils/styles";
-import { categories } from "../../utils/data";
+import { GetCategories } from "../../utils/data";
 import { Link } from "expo-router";
 import { useContext } from "react";
-import { DataContext } from "../../DataContext";
+import { DataContext, LangContext } from "../../DataContext";
 
 export default function Columns() {
 
     const { setAdTrigger } = useContext(DataContext);
+    const { language } = useContext(LangContext);
 
     return (
         <View style={styles.container}>
             {
-                categories.slice(1).map((item) => {
+                GetCategories(language).slice(1).map((item) => {
                     return (
-                        <Link asChild href={{ pathname: "/submenu", params: { category: item.name, subcategories: JSON.stringify(item.subcategories) } }}>
+                        <Link asChild href={{ pathname: "/submenu", params: { category: item.name, original: item.original, subcategories: JSON.stringify(item.subcategories) } }}>
                             <TouchableOpacity style={{ width: "47%" }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}

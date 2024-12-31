@@ -8,10 +8,14 @@ import Header from "../src/components/header";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import Actions from "../src/components/actions";
 import DownloadIcon from "../src/icons/download";
+import { LangContext } from "../src/DataContext";
+import { useContext } from "react";
 
 export default function ImageWrapper() {
 
     const params = useLocalSearchParams();
+    const { language } = useContext(LangContext);
+
     const { image } = params;
     const imageName = image.substring(image.lastIndexOf("/") + 1, image.length);
 

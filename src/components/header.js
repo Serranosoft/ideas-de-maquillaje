@@ -5,6 +5,8 @@ import { ui } from "../utils/styles";
 import MenuIcon from "../icons/menu";
 import HappyFaceIcon from "../icons/happy-face";
 import ArrowLeftIcon from "../icons/arrow-left";
+import { useContext } from "react";
+import { LangContext } from "../DataContext";
 
 export default function Header({ 
     title, 
@@ -14,6 +16,7 @@ export default function Header({
 }) {
 
     const router = useRouter();
+    const { language } = useContext(LangContext);
 
     const phrases = [
         language.t("_headerPhrase1"),

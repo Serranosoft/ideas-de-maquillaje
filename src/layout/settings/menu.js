@@ -8,13 +8,14 @@ import LanguageIcon from "../../icons/language";
 import ShareIcon from "../../icons/share";
 import StarIcon from "../../icons/star";
 import { useContext, useState } from "react";
-import { DataContext } from "../../DataContext";
+import { DataContext, LangContext } from "../../DataContext";
 import LanguageModal from "./language-modal";
 
 export default function Menu() {
 
     const router = useRouter();
     const { setShowOpenAd } = useContext(DataContext);
+    const { language } = useContext(LangContext);
 
     const [langModal, setLangModal] = useState(false);
 

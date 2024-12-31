@@ -2,13 +2,14 @@ import { Link, Stack } from "expo-router"
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native"
 import Header from "../src/components/header"
 import { useContext, useEffect, useState } from "react"
-import { DataContext } from "../src/DataContext"
+import { DataContext, LangContext } from "../src/DataContext"
 import { Image } from "expo-image";
 
 export default function Favorites() {
 
     // Debo obtener todos los favoritos
     const { favorites } = useContext(DataContext);
+    const { language } = useContext(LangContext);
     const [favoriteImages, setFavoriteImages] = useState([])
 
     useEffect(() => {
