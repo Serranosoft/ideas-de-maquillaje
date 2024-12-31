@@ -22,7 +22,7 @@ export default function ImageWrapper() {
                 downloadImage();
             } else {
                 ToastAndroid.showWithGravityAndOffset(
-                    "No tengo permisos para acceder a la galería de su dispositivo",
+                    language.t("_imagePermissions"),
                     ToastAndroid.LONG,
                     ToastAndroid.BOTTOM,
                     25,
@@ -40,15 +40,15 @@ export default function ImageWrapper() {
             const asset = await MediaLibrary.createAssetAsync(uri);
 
             // Obtener el álbum existente o crearlo
-            let album = await MediaLibrary.getAlbumAsync("Ideas de maquillaje");
+            let album = await MediaLibrary.getAlbumAsync(language.t("_imageAlbumName"));
             if (!album) {
-                album = await MediaLibrary.createAlbumAsync("Ideas de maquillaje", asset, true);
+                album = await MediaLibrary.createAlbumAsync(language.t("_imageAlbumName"), asset, true);
             } else {
                 await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
             }
 
             ToastAndroid.showWithGravityAndOffset(
-                "Imagen guardada en tu galería en el albúm «Ideas de maquillaje»",
+                language.t("_imageSaved"),
                 ToastAndroid.LONG,
                 ToastAndroid.BOTTOM,
                 25,

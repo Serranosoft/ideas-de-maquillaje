@@ -19,8 +19,8 @@ export async function testNotification() {
         const notificacion = {
             identifier: "notificacion-10-sec",
             content: {
-                title: '¡Nuevas ideas de maquillaje!',
-                body: 'Entra y mira todas las ideas y nuevas que tenemos para ti',
+                title: language.t("_notificationTitle"),
+                body: language.t("_notificationContent"),
             },
             trigger: {
                 seconds: 10, // La hora a la que se lanzará la notificación
@@ -56,8 +56,8 @@ export async function scheduleWeeklyNotification() {
         const notificacion = {
             identifier: 'notificacion-semanal',
             content: {
-                title: '¡Nuevas ideas de maquillaje!',
-                body: 'Entra y mira todas las ideas y nuevas que tenemos para ti',
+                title: language.t("_notificationTitle"),
+                body: language.t("_notificationContent"),
             },
             trigger: {
                 seconds: getLeftTimeToNextMonday(),

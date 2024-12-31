@@ -7,20 +7,22 @@ import * as StoreReview from 'expo-store-review';
 import LanguageIcon from "../../icons/language";
 import ShareIcon from "../../icons/share";
 import StarIcon from "../../icons/star";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../../DataContext";
+import LanguageModal from "./language-modal";
 
 export default function Menu() {
 
     const router = useRouter();
-
     const { setShowOpenAd } = useContext(DataContext);
 
-    const url = 'https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US';
+    const [langModal, setLangModal] = useState(false);
+
     async function share() {
+        const url = 'https://play.google.com/store/apps/details?id=com.instagram.android&hl=en_IN&gl=US';
         try {
             setShowOpenAd(false);
-            await Share.share({ message: ('Tutoriales e Ideas de Maquillaje 💫 | Tu app de belleza 🎀' + '\n' + url) });
+            await Share.share({ message: (language.t("_menuShareMessage") + '\n' + url) });
         } catch (error) {
             alert(error.message);
         }
@@ -35,13 +37,14 @@ export default function Menu() {
 
     return (
         <View style={styles.container}>
-            <Button border>
+            <Button border evt={() => setLangModal(!langModal)}>
                 <LanguageIcon
                     ball
                     width={24}
                     height={24}
                 />
-                <Text style={ui.h3}>Cambiar idioma</Text>
+                <Text style={ui.h3}>{language.t("_menuChangeLanguage")}</Text>
+                <LanguageModal {...{ langModal, setLangModal }} />
             </Button>
             <Button border evt={() => router.navigate("/favorites")}>
                 <HeartIcon
@@ -49,7 +52,7 @@ export default function Menu() {
                     width={24}
                     height={24}
                 />
-                <Text style={ui.h3}>Mis favoritos</Text>
+                <Text style={ui.h3}>{language.t("_favoritesTitle")}</Text>
             </Button>
             <Button border evt={() => share()}>
                 <ShareIcon
@@ -57,7 +60,7 @@ export default function Menu() {
                     width={24}
                     height={24}
                 />
-                <Text style={ui.h3}>Compartir con amigos</Text>
+                <Text style={ui.h3}>{language.t("_menuShareWithFriends")}</Text>
             </Button>
             <Button border evt={() => requestReview()}>
                 <StarIcon
@@ -65,7 +68,7 @@ export default function Menu() {
                     width={24}
                     height={24}
                 />
-                <Text style={ui.h3}>Puntuar aplicación</Text>
+                <Text style={ui.h3}>{language.t("_menuReviewApp")}</Text>
             </Button>
         </View>
     )

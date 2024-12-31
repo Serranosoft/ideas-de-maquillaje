@@ -29,7 +29,7 @@ export default function List() {
                     width={24}
                     height={24}
                 />
-                <Text style={ui.h3}>Ver mis favoritos</Text>
+                <Text style={ui.h3}>{language.t("_homeFavorites")}</Text>
             </Button>
             <Feedback />
 

@@ -16,11 +16,11 @@ export default function Header({
     const router = useRouter();
 
     const phrases = [
-        "¡Hola!",
-        "¿Qué tal?",
-        "¿Cómo estás?",
-        "¡Me alegro verte!",
-        "¿Qué necesitas?",
+        language.t("_headerPhrase1"),
+        language.t("_headerPhrase2"),
+        language.t("_headerPhrase3"),
+        language.t("_headerPhrase4"),
+        language.t("_headerPhrase5"),
     ]
 
     return (

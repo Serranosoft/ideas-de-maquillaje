@@ -2,12 +2,14 @@ import { SplashScreen, Stack, router } from "expo-router";
 import { View, StatusBar, StyleSheet, Image, Pressable, AppState } from "react-native";
 import { createRef, useEffect, useRef, useState } from "react";
 import { useFonts } from "expo-font";
-import { DataContext } from "../src/DataContext";
+import { DataContext, LangContext } from "../src/DataContext";
 import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
-
+import { getLocales } from 'expo-localization';
+import { I18n } from 'i18n-js'
+import { translations } from "../src/utils/localizations";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 SplashScreen.preventAutoHideAsync();
@@ -20,6 +22,13 @@ export default function Layout() {
         "Semibold": require("../assets/fonts/Reckless/SemiBold.ttf"),
         "Bold": require("../assets/fonts/Reckless/Bold.ttf"),
     });
+
+    // Idioma
+    const [language, setLanguage] = useState(getLocales()[0].languageCode);
+    const i18n = new I18n(translations);
+    i18n.locale = language;
+    i18n.enableFallback = true
+    i18n.defaultLocale = "es";
 
     useEffect(() => {
         if (fontsLoaded) {
@@ -70,9 +79,11 @@ export default function Layout() {
         <View style={styles.container}>
             <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} />
             <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd }}>
-                <GestureHandlerRootView style={styles.wrapper}>
-                    <Stack />
-                </GestureHandlerRootView>
+                <LangContext.Provider value={{ language: i18n, setLanguage }}>
+                    <GestureHandlerRootView style={styles.wrapper}>
+                        <Stack />
+                    </GestureHandlerRootView>
+                </LangContext.Provider>
             </DataContext.Provider>
             <StatusBar style="light" />
         </View>

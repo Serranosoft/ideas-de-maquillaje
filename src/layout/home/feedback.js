@@ -4,8 +4,8 @@ import { ui } from "../../utils/styles"
 export default function Feedback() {
     return (
         <View style={styles.container}>
-            <Text style={[ui.h2, ui.center]}>🎀 ¿Te gusta la app? 🎀</Text>
-            <Text style={[ui.h4, ui.center]}>Dame una puntuación en la Play Store para ayudarme a seguir mejorando 🌈🌈</Text>
+            <Text style={[ui.h2, ui.center]}>{language.t("_feedbackPhrase1")}</Text>
+            <Text style={[ui.h4, ui.center]}>{language.t("_feedbackPhrase2")}</Text>
         </View>
     )
 }

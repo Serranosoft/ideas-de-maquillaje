@@ -1,15 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DataContext } from "../DataContext";
-import { Pressable, StyleSheet, Text, ToastAndroid, View } from "react-native";
-import Animated, {
-    useSharedValue,
-    useAnimatedStyle,
-    withTiming,
-    interpolateColor
-} from 'react-native-reanimated';
-import Svg, { Path } from 'react-native-svg';
-import { ui } from "../utils/styles";
+import { Pressable, StyleSheet, ToastAndroid, View } from "react-native";
 import HeartRemoveIcon from "../icons/heart-remove";
 import HeartAddIcon from "../icons/heart-add";
 
@@ -31,7 +23,7 @@ export default function Favorite({ image }) {
             setFavorites(favorites.concat(image))
             setIsFavorite(true);
             ToastAndroid.showWithGravityAndOffset(
-                "Imagen añadida de favoritos",
+                language.t("_favoritesAdded"),
                 ToastAndroid.LONG,
                 ToastAndroid.BOTTOM,
                 25,
@@ -43,7 +35,7 @@ export default function Favorite({ image }) {
             setFavorites(favoritesAux);
             setIsFavorite(false);
             ToastAndroid.showWithGravityAndOffset(
-                "Imagen eliminada de favoritos",
+                language.t("_favoritesDeleted"),
                 ToastAndroid.LONG,
                 ToastAndroid.BOTTOM,
                 25,
@@ -82,9 +74,5 @@ const styles = StyleSheet.create({
         alignItems: "center",
         gap: 8,
         marginRight: 4
-    },
-    svg: {
-        width: 27,
-        height: 27,
     },
 })

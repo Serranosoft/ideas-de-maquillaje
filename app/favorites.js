@@ -18,7 +18,7 @@ export default function Favorites() {
     return (
         <View style={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
-            <Header title={"Mis favoritos"} back />
+            <Header title={language.t("_favoritesTitle")} back />
             {
                 favoriteImages.length > 0 ?
                         <FlatList
@@ -37,7 +37,7 @@ export default function Favorites() {
                             }}
                         />
                     :
-                    <Text style={{ fontSize: 27, textAlign: "center" }}>No tienes ningún diseño guardado en favoritos</Text>
+                    <Text style={{ fontSize: 27, textAlign: "center" }}>{language.t("_favoritesEmptyMessage")}</Text>
 
             }
         </View>
