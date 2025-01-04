@@ -14,9 +14,9 @@ export default function Columns() {
     return (
         <View style={styles.container}>
             {
-                GetCategories(language).slice(1).map((item) => {
+                GetCategories(language).slice(1).map((item, index) => {
                     return (
-                        <Link asChild href={{ pathname: "/submenu", params: { category: item.name, original: item.original, subcategories: JSON.stringify(item.subcategories) } }}>
+                        <Link asChild key={index} href={{ pathname: "/submenu", params: { category: item.name, original: item.original, subcategories: JSON.stringify(item.subcategories) } }}>
                             <TouchableOpacity style={{ width: "47%" }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}
