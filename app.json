@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Tutoriales e ideas de maquillaje",
+    "name": "Makeup tutorials and ideas",
     "slug": "maquillaje",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -32,7 +32,7 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.ACCESS_MEDIA_LOCATION"
       ],
-      "versionCode": 6,
+      "versionCode": 7,
       "package": "com.paulaymanu113.maquillaje"
     },
     "plugins": [
