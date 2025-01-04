@@ -4,6 +4,8 @@ import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 import { ui } from '../../utils/styles';
 import RadioButton from '../../components/radio-button';
 import { LangContext } from '../../DataContext';
+import Button from '../../components/button';
+import OkIcon from '../../icons/ok-icon';
 
 export default function LanguageModal({ langModal, setLangModal }) {
 
@@ -35,21 +37,27 @@ export default function LanguageModal({ langModal, setLangModal }) {
             <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                     <Text style={ui.h3}>{language.t("_langChangeLanguage")}</Text>
-                    {
-                        languages.map((language, index) => {
-                            return (
-                                <TouchableOpacity style={styles.row} key={index} onPress={() => updateLanguage(language.acronym)}>
-                                    <Text style={ui.text}>{language.title}</Text>
-                                    <RadioButton selected={language.acronym === selected} />
-                                </TouchableOpacity>
-                            )
-                        })
-                    }
-                    <Pressable
+                    <View style={styles.options}>
+                        {
+                            languages.map((language, index) => {
+                                return (
+                                    <TouchableOpacity style={styles.row} key={index} onPress={() => updateLanguage(language.acronym)}>
+                                        <Text style={ui.text}>{language.title}</Text>
+                                        <RadioButton selected={language.acronym === selected} />
+                                    </TouchableOpacity>
+                                )
+                            })
+                        }
+                    </View>
+                    {/* <Pressable
                         style={[styles.button, styles.buttonClose]}
                         onPress={() => setLangModal(!langModal)}>
                         <Text style={styles.textStyle}>{language.t("_langChangeLanguage")}</Text>
-                    </Pressable>
+                    </Pressable> */}
+                    <Button border evt={() => setLangModal(!langModal)}>
+                        <Text></Text>
+                        <Text style={ui.h3}>{language.t("_langChangeLanguage")}</Text>
+                    </Button>
                 </View>
             </View>
         </Modal>
@@ -62,9 +70,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        maxWidth: 370,
+        margin: "auto"
     },
     modalView: {
-        gap: 8,
+        gap: 24,
         margin: 20,
         backgroundColor: 'white',
         borderRadius: 20,
@@ -78,31 +88,12 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
     },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
+    options: {
+        gap: 8,
     },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
-    textStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
-    },
-
     row: {
         flexDirection: "row",
         justifyContent: "space-between",
         gap: 8,
-
     }
 });

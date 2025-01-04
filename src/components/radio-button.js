@@ -4,9 +4,9 @@ export default function RadioButton({ selected }) {
 
     return (
         <View style={{
-            height: 24,
-            width: 24,
-            borderRadius: 12,
+            height: 26,
+            width: 26,
+            borderRadius: 15,
             borderWidth: 2,
             borderColor: '#000',
             alignItems: 'center',
@@ -15,10 +15,10 @@ export default function RadioButton({ selected }) {
             {
                 selected ?
                     <View style={{
-                        height: 12,
-                        width: 12,
-                        borderRadius: 6,
-                        backgroundColor: '#000',
+                        height: 14,
+                        width: 14,
+                        borderRadius: 8,
+                        backgroundColor: '#d18ead',
                     }} />
                     : null
             }

@@ -6,7 +6,8 @@ export const ui = {
     text: {
         fontFamily: "Regular",
         color: "black",
-        fontSize: 16.5,
+        fontSize: 17,
+        lineHeight: 18,
     },
     h1: {
         fontSize: 36,
@@ -28,7 +29,7 @@ export const ui = {
     h4: {
         fontFamily: "Semibold",
         color: "black",
-        fontSize: 17,
+        fontSize: 18,
         lineHeight: 18,
     },
     center: {
