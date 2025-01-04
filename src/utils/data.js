@@ -21,7 +21,7 @@ export function GetCategories(language) {
                     image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/cejas/recurso.jpg",
                 },
                 {
-                    original: "Maquillaje",
+                    original: "Cara",
                     name: language.t("_dataMakeUpFace"),
                     image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159570/como maquillarte/cara/recurso-3.jpg",
                 },
@@ -33,8 +33,8 @@ export function GetCategories(language) {
             ]
         },
         {
-            name: language.t("_dataTutorialsTitle"),
-            original: "Tutorial",
+            name: language.t("_dataTutorialsTitle"), 
+            original: "Tutoriales",
             image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949211/maquillaje/ykgfsofvrhjeh89hufxs.jpg",
             subcategories: [
                 {
@@ -65,7 +65,7 @@ export function GetCategories(language) {
             image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/uijeqaepqmt2y6nkeim4.jpg",
             subcategories: [
                 {
-                    original: "Colores",
+                    original: "Combinacion de colores",
                     name: language.t("_dataColors"),
                     image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735161142/consejos/combinacion-de-colores/recurso-3.jpg",
                 },
@@ -76,7 +76,7 @@ export function GetCategories(language) {
                 },
                 {
                     original: "Maquillaje",
-                    name: language.t("_dataMakeup"),
+                    name: language.t("_dataMakeUp"),
                     image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/consejos/maquillaje/recurso-2.jpg",
                 },
                 {
@@ -115,7 +115,7 @@ export function GetCategories(language) {
             subcategories: [
                 {
                     original: "Bodas",
-                    name: language.t("_dataWedding"),
+                    name: language.t("_dataWeeding"),
                     image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735159746/inspiracion/bodas/recurso-2.jpg",
                 },
                 {
