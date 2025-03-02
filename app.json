@@ -16,7 +16,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Permite a Maquillaje acceder a tus fotos para descargar la imagen.",
         "NSPhotoLibraryAddUsageDescription": "Permite a Maquillaje acceder a tus fotos para descargar la imagen."

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { DataContext, LangContext } from "../DataContext";
-import { Pressable, StyleSheet, ToastAndroid, View } from "react-native";
+import { Alert, Platform, Pressable, StyleSheet, ToastAndroid, View } from "react-native";
 import HeartRemoveIcon from "../icons/heart-remove";
 import HeartAddIcon from "../icons/heart-add";
 
@@ -23,25 +23,23 @@ export default function Favorite({ image }) {
         if (!favorites.includes(image)) {
             setFavorites(favorites.concat(image))
             setIsFavorite(true);
-            ToastAndroid.showWithGravityAndOffset(
-                language.t("_favoritesAdded"),
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50,
-            );
+
+            if (Platform.OS === "android") {
+                ToastAndroid.showWithGravityAndOffset(language.t("_favoritesAdded"), ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+            } else {
+                Alert.alert(language.t("_favoritesAdded"));
+            }
         } else {
             let favoritesAux = [...favorites];
             favoritesAux.splice(favoritesAux.indexOf(image), 1)
             setFavorites(favoritesAux);
             setIsFavorite(false);
-            ToastAndroid.showWithGravityAndOffset(
-                language.t("_favoritesDeleted"),
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50,
-            );
+
+            if (Platform.OS === "android") {
+                ToastAndroid.showWithGravityAndOffset(language.t("_favoritesDeleted"), ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+            } else {
+                Alert.alert(language.t("_favoritesDeleted"));
+            }
         }
     }
 

@@ -1,9 +1,8 @@
-import { SplashScreen, Stack, router } from "expo-router";
-import { View, StatusBar, StyleSheet, Image, Pressable, AppState } from "react-native";
-import { createRef, useEffect, useRef, useState } from "react";
+import { SplashScreen, Stack } from "expo-router";
+import { View, StatusBar, StyleSheet} from "react-native";
+import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext, LangContext } from "../src/DataContext";
-import { ui } from "../src/utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
@@ -11,6 +10,7 @@ import { getLocales } from 'expo-localization';
 import { I18n } from 'i18n-js'
 import { translations } from "../src/utils/localizations";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Constants from "expo-constants";
 
 SplashScreen.preventAutoHideAsync();
 export default function Layout() {
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         flex: 1,
         position: "relative",
         justifyContent: "center",
-        paddingTop: StatusBar.currentHeight,
+        paddingTop: Constants.statusBarHeight,
         paddingHorizontal: 16,
         backgroundColor: "#fff"
     },

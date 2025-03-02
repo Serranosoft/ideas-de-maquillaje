@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { StyleSheet, ToastAndroid, View, TouchableOpacity } from "react-native";
+import { StyleSheet, ToastAndroid, View, TouchableOpacity, Platform, Alert } from "react-native";
 import * as FileSystem from 'expo-file-system';
 import * as MediaLibrary from 'expo-media-library';
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
@@ -25,13 +25,11 @@ export default function ImageWrapper() {
             if (status === "granted") {
                 downloadImage();
             } else {
-                ToastAndroid.showWithGravityAndOffset(
-                    language.t("_imagePermissions"),
-                    ToastAndroid.LONG,
-                    ToastAndroid.BOTTOM,
-                    25,
-                    50,
-                );
+                if (Platform.OS === "android") {
+                    ToastAndroid.showWithGravityAndOffset(language.t("_imagePermissions"), ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+                } else {
+                    Alert.alert(language.t("_imagePermissions"));
+                }
             }
         } catch (error) {
             console.log(error);
@@ -51,14 +49,11 @@ export default function ImageWrapper() {
                 await MediaLibrary.addAssetsToAlbumAsync([asset], album, true);
             }
 
-            ToastAndroid.showWithGravityAndOffset(
-                language.t("_imageSaved"),
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50,
-            );
-
+            if (Platform.OS === "android") {
+                ToastAndroid.showWithGravityAndOffset(language.t("_imageSaved"), ToastAndroid.LONG, ToastAndroid.BOTTOM, 25, 50);
+            } else {
+                Alert.alert(language.t("_imageSaved"));
+            }
 
         } catch (error) {
             console.log(error);
