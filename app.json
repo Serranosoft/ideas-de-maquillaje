@@ -19,8 +19,10 @@
       "supportsTablet": false,
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Permite a Maquillaje acceder a tus fotos para descargar la imagen.",
-        "NSPhotoLibraryAddUsageDescription": "Permite a Maquillaje acceder a tus fotos para descargar la imagen."
-      }
+        "NSPhotoLibraryAddUsageDescription": "Permite a Maquillaje acceder a tus fotos para descargar la imagen.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.paulaymanu113.maquillaje"
     },
     "android": {
       "adaptiveIcon": {
@@ -32,7 +34,7 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.ACCESS_MEDIA_LOCATION"
       ],
-      "versionCode": 7,
+      "versionCode": 8,
       "package": "com.paulaymanu113.maquillaje"
     },
     "plugins": [
