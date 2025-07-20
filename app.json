@@ -3,6 +3,7 @@
     "name": "Makeup tutorials and ideas",
     "slug": "maquillaje",
     "version": "1.0.0",
+    "newArchEnabled": false,
     "orientation": "portrait",
     "icon": "./assets/logo-maquillaje.png",
     "userInterfaceStyle": "light",
