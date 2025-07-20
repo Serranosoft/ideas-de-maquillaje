@@ -17,7 +17,6 @@ const AdsHandler = forwardRef((props, ref) => {
     useEffect(() => {
         const prepare = async () => {
             const consentInfo = await AdsConsent.requestInfoUpdate();
-            console.log(consentInfo);
             AdsConsent.loadAndShowConsentFormIfRequired()
                 .then(startGoogleMobileAdsSDK)
                 .catch((error) => console.error('Consent gathering failed:', error));
@@ -45,7 +44,6 @@ const AdsHandler = forwardRef((props, ref) => {
             loadIntersitial();
         },
         showIntersitialAd() {
-            console.log("showitt");
             props.setShowOpenAd(false);
             showIntersitialAd();
         },
