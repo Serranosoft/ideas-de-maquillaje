@@ -1,7 +1,5 @@
-import { FlatList, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Link, Stack } from "expo-router";
-import { ui } from "../src/utils/styles";
-import Title from "../src/layout/home/title";
+import { ScrollView, StyleSheet} from "react-native";
+import { Stack } from "expo-router";
 import Header from "../src/components/header";
 import Hero from "../src/layout/settings/hero";
 import Menu from "../src/layout/settings/menu";
@@ -25,10 +23,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
+        paddingHorizontal: 16,
     },
     scrollContent: {
         gap: 16,
-        paddingTop: 24,
+        paddingTop: 16,
         paddingBottom: 60
     },
 

@@ -16,13 +16,13 @@ export default function Actions() {
                 <View style={styles.icon}>
                     <PinchIcon />
                 </View>
-                <Text style={ui.muted}>{language.t("_actionsPinch")}</Text>
+                <Text style={[ui.muted, { color: "#000" }]}>{language.t("_actionsPinch")}</Text>
             </View>
             <View style={styles.action}>
                 <View style={styles.icon}>
                     <DoubleTapIcon />
                 </View>
-                <Text style={ui.muted}>{language.t("_actionsTap")}</Text>
+                <Text style={[ui.muted, { color: "#000" }]}>{language.t("_actionsTap")}</Text>
             </View>
         </View>
     )

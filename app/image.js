@@ -8,13 +8,14 @@ import Header from "../src/components/header";
 import { ImageZoom } from '@likashefqet/react-native-image-zoom';
 import Actions from "../src/components/actions";
 import DownloadIcon from "../src/icons/download";
-import { LangContext } from "../src/DataContext";
+import { DataContext, LangContext } from "../src/DataContext";
 import { useContext } from "react";
 
 export default function ImageWrapper() {
 
     const params = useLocalSearchParams();
     const { language } = useContext(LangContext);
+    const { adsLoaded } = useContext(DataContext);
 
     const { image } = params;
     const imageName = image.substring(image.lastIndexOf("/") + 1, image.length);
@@ -63,12 +64,12 @@ export default function ImageWrapper() {
     return (
 
         <>
+            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
             <View
                 style={styles.container}
             >
                 <Stack.Screen options={{ headerShown: false }} />
                 <Header back favorite={image} />
-                <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
                 <View style={styles.wrapper}>
                     <ImageZoom
                         onResetAnimationEnd={false}
@@ -95,8 +96,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#fff",
         gap: 8,
-        paddingTop: 24,
+        paddingTop: 16,
         paddingBottom: 16,
+        paddingHorizontal: 16,
         position: "relative"
     },
 

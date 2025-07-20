@@ -10,7 +10,7 @@ export default function Title() {
 
     return (
         <View>
-            <Text style={ui.h1}>{language.t("_homeTitle")}</Text>
+            <Text style={[ui.h1, { color: "#000" }]}>{language.t("_homeTitle")}</Text>
         </View>
     )
 }

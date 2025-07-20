@@ -48,8 +48,9 @@ export default function Favorites() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 24,
+        paddingTop: 16,
         paddingBottom: 24,
+        paddingHorizontal: 16,
         backgroundColor: "#fff",
     },
 

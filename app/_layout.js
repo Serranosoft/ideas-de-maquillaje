@@ -4,13 +4,11 @@ import { createRef, useEffect, useState } from "react";
 import { useFonts } from "expo-font";
 import { DataContext, LangContext } from "../src/DataContext";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Notifications from 'expo-notifications';
 import AdsHandler from "../src/components/AdsHandler";
 import { getLocales } from 'expo-localization';
 import { I18n } from 'i18n-js'
 import { translations } from "../src/utils/localizations";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Constants from "expo-constants";
 import * as StoreReview from 'expo-store-review';
 
 SplashScreen.preventAutoHideAsync();
@@ -48,18 +46,8 @@ export default function Layout() {
         getFavorites();
     }, [])
 
-    // Gestión de notificaciones
-    useEffect(() => {
-        Notifications.setNotificationHandler({
-            handleNotification: async () => ({
-                shouldShowAlert: true,
-                shouldPlaySound: false,
-                shouldSetBadge: false,
-            }),
-        });
-    }, [])
-
     // Gestión de anuncios
+    const [adsLoaded, setAdsLoaded] = useState(false);
     const [adTrigger, setAdTrigger] = useState(0);
     const [showOpenAd, setShowOpenAd] = useState(true);
     const adsHandlerRef = createRef();
@@ -67,10 +55,16 @@ export default function Layout() {
     useEffect(() => {
         if (adTrigger > 3) {
             askForReview();
-        } else if (adTrigger > 4) {
-            adsHandlerRef.current.showIntersitialAd();
-            setAdTrigger(0);
+            setShowOpenAd(false);
         }
+        
+        if (adsLoaded) {
+            if (adTrigger > 4) {
+                adsHandlerRef.current.showIntersitialAd();
+                setAdTrigger(0);
+            }
+        }
+            
     }, [adTrigger])
 
     async function askForReview() {
@@ -86,8 +80,8 @@ export default function Layout() {
 
     return (
         <View style={styles.container}>
-            <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} setShowOpenAd={setShowOpenAd} />
-            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd }}>
+            <AdsHandler ref={adsHandlerRef} showOpenAd={showOpenAd} adsLoaded={adsLoaded} setAdsLoaded={setAdsLoaded} setShowOpenAd={setShowOpenAd} />
+            <DataContext.Provider value={{ favorites: favorites, setFavorites: setFavorites, adsLoaded: adsLoaded, setAdTrigger: setAdTrigger, setShowOpenAd: setShowOpenAd }}>
                 <LangContext.Provider value={{ language: i18n, setLanguage }}>
                     <GestureHandlerRootView style={styles.wrapper}>
                         <Stack />
@@ -103,8 +97,6 @@ const styles = StyleSheet.create({
         flex: 1,
         position: "relative",
         justifyContent: "center",
-        paddingTop: Constants.statusBarHeight,
-        paddingHorizontal: 16,
         backgroundColor: "#fff"
     },
     wrapper: {

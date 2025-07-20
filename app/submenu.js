@@ -10,50 +10,53 @@ import { DataContext } from "../src/DataContext";
 
 export default function submenu() {
 
-    const { setAdTrigger } = useContext(DataContext);
+    const { setAdTrigger, adsLoaded } = useContext(DataContext);
     const params = useLocalSearchParams();
     const { category, original, subcategories } = params;
 
     return (
-        <View style={styles.container}>
-            <Stack.Screen options={{ headerShown: false }} />
-            <Header title={category} back />
-            <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} />
-            <FlatList
-                numColumns={2}
-                data={JSON.parse(subcategories)}
-                contentContainerStyle={styles.columns}
-                columnWrapperStyle={styles.columns}
-                renderItem={({ item }) => {
-                    return (
-                        <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${original.toLowerCase().split(' ').join("-")}-${item.original.toLowerCase().split(' ').join("-")}` } }}>
-                            <TouchableOpacity style={{ flex: 1 }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
-                                <ImageBackground
-                                    source={{ uri: item.image }}
-                                    style={styles.item}
-                                    imageStyle={{ borderRadius: 8 }}
-                                >
-                                    <View style={styles.wrapper}>
-                                        <Text style={ui.h4}>{item.name}</Text>
-                                        <ArrowRightIcon width={24} height={24} black />
-                                    </View>
-                                </ImageBackground>
-                            </TouchableOpacity>
-                        </Link>
-                    )
-                }}
-            >
-            </FlatList>
-        </View>
+        <>
+            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
+            <View style={styles.container}>
+                <Stack.Screen options={{ headerShown: false }} />
+                <Header title={category} back />
+                <FlatList
+                    numColumns={2}
+                    data={JSON.parse(subcategories)}
+                    contentContainerStyle={styles.columns}
+                    columnWrapperStyle={styles.columns}
+                    renderItem={({ item }) => {
+                        return (
+                            <Link asChild href={{ pathname: "/gallery", params: { subcategory: item.name, tag: `${original.toLowerCase().split(' ').join("-")}-${item.original.toLowerCase().split(' ').join("-")}` } }}>
+                                <TouchableOpacity style={{ flex: 1 }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
+                                    <ImageBackground
+                                        source={{ uri: item.image }}
+                                        style={styles.item}
+                                        imageStyle={{ borderRadius: 8 }}
+                                    >
+                                        <View style={styles.wrapper}>
+                                            <Text style={ui.h4}>{item.name}</Text>
+                                            <ArrowRightIcon width={24} height={24} black />
+                                        </View>
+                                    </ImageBackground>
+                                </TouchableOpacity>
+                            </Link>
+                        )
+                    }}
+                >
+                </FlatList>
+            </View>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 24,
-        paddingBottom: 24,
+        paddingTop: 16,
+        paddingBottom: 16,
         backgroundColor: "#fff",
+        paddingHorizontal: 16,
     },
 
     columns: {

@@ -7,7 +7,7 @@ export const ui = {
         fontFamily: "Regular",
         color: "black",
         fontSize: 17,
-        lineHeight: 18,
+        // lineHeight: 18,
     },
     h1: {
         fontSize: 36,
@@ -18,19 +18,19 @@ export const ui = {
         fontFamily: "Semibold",
         color: "black",
         fontSize: 30,
-        lineHeight: 33
+        // lineHeight: 33
     },
     h3: {
         fontFamily: "Semibold",
         color: "black",
         fontSize: 21,
-        lineHeight: 22,
+        // lineHeight: 22,
     },
     h4: {
         fontFamily: "Semibold",
         color: "black",
         fontSize: 18,
-        lineHeight: 18,
+        // lineHeight: 18,
     },
     center: {
         textAlign: "center",

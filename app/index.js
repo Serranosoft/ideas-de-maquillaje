@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { ui } from "../src/utils/styles";
 import Title from "../src/layout/home/title";
@@ -9,34 +9,40 @@ import Button from "../src/components/button";
 import HeartIcon from "../src/icons/heart";
 import Feedback from "../src/layout/home/feedback";
 import { useContext } from "react";
-import { LangContext } from "../src/DataContext";
+import { DataContext, LangContext } from "../src/DataContext";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
+import { bannerId } from "../src/utils/constants";
 
 export default function List() {
 
     const router = useRouter();
     const { language } = useContext(LangContext);
+    const { adsLoaded } = useContext(DataContext);
 
     return (
-        <ScrollView 
-            style={styles.container}
-            contentContainerStyle={styles.scrollContent}
-        >
-            <Stack.Screen options={{ headerShown: false }} />
-            <Header home />
-            <Title />
-            <Hero />
-            <Columns />
-            <Button border evt={() => router.navigate("/favorites")}>
-                <HeartIcon
-                    ball
-                    width={24}
-                    height={24}
-                />
-                <Text style={ui.h3}>{language.t("_homeFavorites")}</Text>
-            </Button>
-            <Feedback />
+        <>
+            { adsLoaded && <BannerAd unitId={bannerId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} requestOptions={{}} /> }
+            <ScrollView
+                style={styles.container}
+                contentContainerStyle={styles.scrollContent}
+            >
+                <Stack.Screen options={{ headerShown: false }} />
+                <Header home />
+                <Title />
+                    <Hero />
+                    <Columns />
+                <Button border evt={() => router.navigate("/favorites")}>
+                    <HeartIcon
+                        ball
+                        width={24}
+                        height={24}
+                    />
+                    <Text style={ui.h3}>{language.t("_homeFavorites")}</Text>
+                </Button>
+                <Feedback />
 
-        </ScrollView>
+            </ScrollView>
+        </>
     )
 }
 
@@ -47,8 +53,9 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         gap: 16,
-        paddingTop: 24,
-        paddingBottom: 60
+        paddingTop: 16,
+        paddingBottom: 60,
+        paddingHorizontal: 16
     },
 
     title: {
@@ -80,7 +87,7 @@ const styles = StyleSheet.create({
 
     info: {
         justifyContent: "center",
-        alignItems: "center", 
+        alignItems: "center",
         width: "100%",
         height: 75,
         position: "absolute",
