@@ -17,7 +17,7 @@ export default function Columns() {
                 GetCategories(language).slice(1).map((item, index) => {
                     return (
                         <Link asChild key={index} href={{ pathname: "/submenu", params: { category: item.name, original: item.original, subcategories: JSON.stringify(item.subcategories) } }}>
-                            <TouchableOpacity style={{ width: "47%" }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
+                            <TouchableOpacity style={{ width: "48%" }} onPress={() => setAdTrigger((adTrigger) => adTrigger + 1)}>
                                 <ImageBackground
                                     source={{ uri: item.image }}
                                     style={styles.item}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         marginBottom: 16
     },
     item: {
-        height: 150,
+        height: 175,
         justifyContent: "flex-end",
         borderRadius: 16
     },

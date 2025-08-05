@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { Pressable } from "react-native";
 import { Image } from "expo-image";
 import Header from "../src/components/header";
-import { DataContext } from "../src/DataContext";
+import { DataContext, LangContext } from "../src/DataContext";
 import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 import { bannerId } from "../src/utils/constants";
 
@@ -15,13 +15,16 @@ export default function gallery() {
     const { subcategory, tag } = params;
     const [images, setImages] = useState([]);
     const { setAdTrigger, adsLoaded } = useContext(DataContext);
+    const { language } = useContext(LangContext);
 
     useEffect(() => {
         getImages();
     }, [])
 
     async function getImages() {
-        const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${tag}.json`)
+        let tagJson = language._locale !== "es" ? tag+"-en" : tag;
+        
+        const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${tagJson}.json`)
             .then((response) => response.json())
             .then(data => data);
 

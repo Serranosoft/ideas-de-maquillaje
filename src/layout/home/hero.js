@@ -32,7 +32,7 @@ export default function Hero() {
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        height: 200,
+        height: 250,
         justifyContent: "flex-end",
         borderRadius: 24,
         marginTop: 8,

@@ -3,7 +3,7 @@ export function GetCategories(language) {
         {
             name: language.t("_dataMakeUpTitle"),
             original: "Cómo maquillarte",
-            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949300/maquillaje/avd4o3ploikhmtpprkm8.jpg",
+            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1754410640/asiatico-4_rb582d.jpg",
             subcategories: [
                 {
                     original: "Ojos",
@@ -35,8 +35,18 @@ export function GetCategories(language) {
         {
             name: language.t("_dataTutorialsTitle"), 
             original: "Tutoriales",
-            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949211/maquillaje/ykgfsofvrhjeh89hufxs.jpg",
+            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1754410626/asiatico-5_eqx7is.jpg",
             subcategories: [
+                {
+                    original: "Cherry girl",
+                    name: "Cherry girl",
+                    image: "https://res.cloudinary.com/dadujos6v/image/upload/v1754411466/cherry-girl-makeup_b4k8o4.jpg",
+                },
+                {
+                    original: "Estrella polar",
+                    name: "Pole Star",
+                    image: "https://res.cloudinary.com/dadujos6v/image/upload/v1754411417/maquillaje-estrella-polar_bgbf5y.jpg",
+                },
                 {
                     original: "Cat Eyes",
                     name: language.t("_dataCatEyes"),
@@ -62,7 +72,7 @@ export function GetCategories(language) {
         {
             name: language.t("_dataTipsTitle"),
             original: "Consejos",
-            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/uijeqaepqmt2y6nkeim4.jpg",
+            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735162526/inspiracion/bodas/recurso-5.jpg",
             subcategories: [
                 {
                     original: "Combinacion de colores",
@@ -89,7 +99,7 @@ export function GetCategories(language) {
         {
             name: language.t("_dataCare"),
             original: "Cuidados",
-            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949298/maquillaje/yzzhsl9vagwivoeslow2.jpg",
+            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735162525/inspiracion/bodas/recurso-3.jpg",
             subcategories: [
                 {
                     original: "Brochas",
@@ -111,7 +121,7 @@ export function GetCategories(language) {
         {
             name: language.t("_dataInspirationTitle"),
             original: "Inspiracion",
-            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1705949300/maquillaje/dyiedovrkq8ikwzmdtsy.jpg",
+            image: "https://res.cloudinary.com/dadujos6v/image/upload/v1735162572/inspiracion/elegante/recurso-6.jpg",
             subcategories: [
                 {
                     original: "Bodas",
