@@ -97,10 +97,10 @@
                     },
                     "ios": {
                         "fonts": [
-                            "./assets/fonts/Regular.ttf",
-                            "./assets/fonts/Medium.ttf",
-                            "./assets/fonts/Semibold.ttf",
-                            "./assets/fonts/Bold.ttf"
+                            "./assets/fonts/Reckless/Regular.ttf",
+                            "./assets/fonts/Reckless/Medium.ttf",
+                            "./assets/fonts/Reckless/Semibold.ttf",
+                            "./assets/fonts/Reckless/Bold.ttf"
                         ]
                     }
                 }
