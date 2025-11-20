@@ -1,5 +1,5 @@
-import { useNavigation, useRouter } from "expo-router";
-import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Favorite from "./favorite";
 import { ui } from "../utils/styles";
 import MenuIcon from "../icons/menu";

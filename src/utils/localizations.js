@@ -74,6 +74,9 @@ const translations = {
 
         _actionsPinch: "Arrastrar (Zoom)",
         _actionsTap: "Doble pulsación (Zoom)",
+
+        _notificationsTitle: "Nuevo look para ti",
+        _notificationsBody: "Descubre un maquillaje creado según tu estilo. ¡Pruébalo ahora y sorpréndete!",
     },
     en: {
         // Language list
@@ -150,6 +153,9 @@ const translations = {
 
         _actionsPinch: "Drag (Zoom)",
         _actionsTap: "Double tap (Zoom)",
+
+        notificationsTitle: "New look for you",
+        notificationsBody: "Discover makeup created just for your style. Try it now and be amazed!",
     },
     ar: {
         _langListSpanish: "الإسبانية",
@@ -224,6 +230,9 @@ const translations = {
 
         _actionsPinch: "سحب (تكبير)",
         _actionsTap: "ضغط مزدوج (تكبير)",
+
+        notificationsTitle: "إطلالة جديدة لك",
+        notificationsBody: "اكتشفي مكياجًا مصممًا وفقًا لأسلوبك. جربيه الآن وسترين الفرق!",
     },
     de: {
         _langListSpanish: "Spanisch",
@@ -298,6 +307,9 @@ const translations = {
 
         _actionsPinch: "Ziehen (Zoom)",
         _actionsTap: "Doppeltippen (Zoom)",
+
+        notificationsTitle: "Neuer Look für dich",
+        notificationsBody: "Entdecke ein Make-up, das zu deinem Stil passt. Probier es jetzt aus und lass dich überraschen!",
     },
     fr: {
         _langListSpanish: "Espagnol",
@@ -372,6 +384,9 @@ const translations = {
 
         _actionsPinch: "Pincer (Zoom)",
         _actionsTap: "Double tape (Zoom)",
+
+        notificationsTitle: "Nouveau look pour toi",
+        notificationsBody: "Découvre un maquillage créé selon ton style. Essaie-le maintenant et sois surprise !",
     },
     hi: {
         _langListSpanish: "स्पेनिश",
@@ -446,6 +461,9 @@ const translations = {
 
         _actionsPinch: "खींचें (ज़ूम)",
         _actionsTap: "डबल टैप (ज़ूम)",
+
+        notificationsTitle: "आपके लिए नया लुक",
+        notificationsBody: "अपने स्टाइल के अनुसार बनाया गया मेकअप देखें। अभी आज़माएं और हैरान हो जाएं!"
     },
 };
 

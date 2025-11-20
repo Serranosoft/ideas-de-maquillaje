@@ -6,14 +6,17 @@ import RadioButton from '../../components/radio-button';
 import { LangContext } from '../../DataContext';
 import Button from '../../components/button';
 import OkIcon from '../../icons/ok-icon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { userPreferences } from '../../utils/userPreferences';
 
 export default function LanguageModal({ langModal, setLangModal }) {
 
     const { language, setLanguage } = useContext(LangContext);
     const [selected, setSelected] = useState(language._locale || false);
 
-    function updateLanguage(acronym) {
+    async function updateLanguage(acronym) {
         setSelected(acronym)
+        await AsyncStorage.setItem(userPreferences.LANGUAGE, acronym);
         setLanguage(acronym);
     }
 

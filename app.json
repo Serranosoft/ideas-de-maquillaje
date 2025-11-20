@@ -47,7 +47,63 @@
                     "isAccessMediaLocationEnabled": true
                 }
             ],
-            "expo-font",
+            [
+                "expo-font",
+                {
+                    "android": {
+                        "fonts": [
+                            {
+                                "fontFamily": "Regular",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/Reckless/Regular.ttf",
+                                        "weight": "400",
+                                        "style": "normal"
+                                    }
+                                ]
+                            },
+                            {
+                                "fontFamily": "Medium",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/Reckless/Medium.ttf",
+                                        "weight": "500",
+                                        "style": "normal"
+                                    }
+                                ]
+                            },
+                            {
+                                "fontFamily": "Semibold",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/Reckless/SemiBold.ttf",
+                                        "weight": "600",
+                                        "style": "normal"
+                                    }
+                                ]
+                            },
+                            {
+                                "fontFamily": "Bold",
+                                "fontDefinitions": [
+                                    {
+                                        "path": "./assets/fonts/Reckless/Bold.ttf",
+                                        "weight": "700",
+                                        "style": "normal"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "ios": {
+                        "fonts": [
+                            "./assets/fonts/Regular.ttf",
+                            "./assets/fonts/Medium.ttf",
+                            "./assets/fonts/Semibold.ttf",
+                            "./assets/fonts/Bold.ttf"
+                        ]
+                    }
+                }
+            ],
             "expo-router",
             [
                 "react-native-google-mobile-ads",
@@ -65,6 +121,12 @@
                     "android": {
                         "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }"
                     }
+                }
+            ],
+            [
+                "expo-notifications",
+                {
+                    "icon": "./assets/notification.png"
                 }
             ]
         ],
