@@ -22,7 +22,14 @@ export default function gallery() {
     }, [])
 
     async function getImages() {
-        let tagJson = language._locale !== "es" ? tag+"-en" : tag;
+        
+        // Si la categoria es tutorials, entonces se hace lo de tagJson.
+        let tagJson = tag;
+        if (tag.startsWith("tutoriales")) {
+            if (language._locale !== "es") {
+                tagJson = tag+"-en";
+            }
+        }
         
         const response = await fetch(`https://res.cloudinary.com/dadujos6v/image/list/${tagJson}.json`)
             .then((response) => response.json())
